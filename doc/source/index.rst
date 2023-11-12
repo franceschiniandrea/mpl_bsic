@@ -69,6 +69,7 @@ Functions
    mpl_bsic.check_figsize
    mpl_bsic.format_timeseries_axis
    mpl_bsic.preprocess_dataframe
+   mpl_bsic.apply_bsic_logo
 
 Indices and tables
 ==================
