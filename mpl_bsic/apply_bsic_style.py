@@ -155,7 +155,7 @@ def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
         y = np.cos(x)
 
         fig, ax = plt.subplots(1, 1)
-        # ax.set_title('Cos(x)') # set the title before applying the style
+        ax.set_title('Cos(x)') # set the title before applying the style
         # the function will re-set the title with the correct style
         apply_bsic_style(fig, ax)
 
