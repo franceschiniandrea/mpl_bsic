@@ -18,7 +18,7 @@ release = "1.0.0"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-package_path = os.path.abspath("../../mpl_bsic")
+package_path = os.path.abspath("../../")
 sys.path.insert(0, package_path)
 print(package_path)
 print(os.listdir(package_path))

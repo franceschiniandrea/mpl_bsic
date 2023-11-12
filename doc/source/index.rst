@@ -6,23 +6,16 @@
 Docs for mpl_bsic
 ====================================
 
-.. .. autosummary::
-..    :toctree: _autosummary
-..    :template: custom-module-template.rst
-..    :recursive:
-
-..    apply_bsic_style
+Functions
+---------
 
 .. autosummary::
-   :toctree: _autosummary
-   :template: custom-function-template.rst
-   :recursive:
+   :toctree: _functions
 
-   ~apply_bsic_style.apply_bsic_style
-   ~check_figsize.check_figsize
-   ~format_timeseries_axis.format_timeseries_axis
-   ~preprocess_dataframe.preprocess_dataframe
-
+   mpl_bsic.apply_bsic_style
+   mpl_bsic.check_figsize
+   mpl_bsic.format_timeseries_axis
+   mpl_bsic.preprocess_dataframe
 
 Indices and tables
 ==================

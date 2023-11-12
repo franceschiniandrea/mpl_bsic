@@ -1,7 +1,3 @@
-""" Apply the BSIC Style to an existing matplotlib plot.
-
-Extended description of the function.
-"""
 from cycler import cycler
 from matplotlib import pyplot as plt
 from matplotlib.axes import Axes
