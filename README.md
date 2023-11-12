@@ -8,9 +8,8 @@ Here is the link for the docs: [ReadTheDocs](https://mpl-bsic.readthedocs.io/)
 
 ## If the matplotlib fonts does not work
 
-You have to install the .ttf and clean your matplotlib cache (full guide to come)
+You have to install the .ttf and clean your matplotlib cache (full guide on the docs)
 
 ## TODOs
 
-1) apply the bsic logo in plots
 2) plot trade (as bloomberg with last price and stuff)
