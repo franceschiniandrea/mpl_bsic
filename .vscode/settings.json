@@ -3,5 +3,5 @@
     "python.analysis.autoImportCompletions": true,
     "files.trimTrailingWhitespace": true,
     "esbonio.sphinx.confDir": "",
-
+    "editor.defaultFormatter": "ms-python.black-formatter"
 }
