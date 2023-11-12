@@ -18,7 +18,7 @@ setup(
     #   - MAJOR VERSION 0
     #   - MINOR VERSION 1
     #   - MAINTENANCE VERSION 0
-    version="0.1.7",
+    version="1.1.0",
     # Here is a small description of the library. This appears
     # when someone searches for the library on https://pypi.org/search.
     description="BSIC Plotting Library.",
@@ -46,7 +46,7 @@ setup(
     # I want to include those as well.
     include_package_data=True,
     # Here I can specify the python version necessary to run this library.
-    python_requires=">=3.12",
+    python_requires=">=3.9",
     # Additional classifiers that give some characteristics about the package.
     # For a complete list go to https://pypi.org/classifiers/.
     classifiers=[
@@ -65,7 +65,7 @@ setup(
         # Here I'll specify the version of Python it uses.
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.9",
         # "Programming Language :: Python :: 3.8",
         # Here are the topics that my library covers.
         # "Topic :: Database",

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: mpl-bsic
-Version: 0.1.7
+Version: 1.1.0
 Summary: BSIC Plotting Library.
 Home-page: https://github.com/NotFrancee/mpl_bsic
 Author: A. Franceschini
@@ -13,8 +13,8 @@ Classifier: Natural Language :: English
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.12
-Requires-Python: >=3.12
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 Requires-Dist: matplotlib
 Requires-Dist: numpy

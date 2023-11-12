@@ -1,5 +1,8 @@
+from typing import Optional
+
+
 def check_figsize(
-    width: float, height: float | None, aspect_ratio: float | None
+    width: float, height: Optional[float], aspect_ratio: Optional[float]
 ) -> tuple[float, float]:
     r"""Check the validity of the figsize.
 

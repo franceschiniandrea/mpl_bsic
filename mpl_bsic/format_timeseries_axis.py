@@ -1,10 +1,14 @@
 from typing import Literal
 from matplotlib.axes import Axes
 import matplotlib.dates as mdates
+from typing import Optional
 
 
 def format_timeseries_axis(
-    ax: Axes, time_unit: Literal["Y", "M", "D"], freq: int, fmt: str | None
+    ax: Axes,
+    time_unit: Literal["Y", "M", "D"],
+    freq: int,
+    fmt: Optional[str] = None,  # for backwards compatibility
 ):
     """Format the x-axis of a timeseries plot.
 
@@ -41,15 +45,14 @@ def format_timeseries_axis(
     Examples will come soon.
     """
 
-    match time_unit:
-        case "Y":
-            ax.xaxis.set_major_locator(mdates.YearLocator(freq))
-        case "M":
-            ax.xaxis.set_major_locator(mdates.MonthLocator(interval=freq))
-        case "D":
-            ax.xaxis.set_major_locator(mdates.DayLocator(freq))
-        case _:
-            raise Exception("this time frequency is not supported.")
+    if time_unit == "Y":
+        ax.xaxis.set_major_locator(mdates.YearLocator(freq))
+    elif time_unit == "M":
+        ax.xaxis.set_major_locator(mdates.MonthLocator(interval=freq))
+    elif time_unit == "D":
+        ax.xaxis.set_major_locator(mdates.DayLocator(freq))
+    else:
+        raise Exception("this time frequency is not supported.")
 
     date_format = fmt if fmt else "%b-%y"
     ax.xaxis.set_major_formatter(mdates.DateFormatter(date_format))

@@ -2,6 +2,7 @@ from cycler import cycler
 from matplotlib import pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
+from typing import Optional
 
 DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
@@ -96,7 +97,7 @@ This is the examples section. WIP.
 """
 
 
-def apply_bsic_style(fig: Figure, ax: Axes, title: str | None = None):
+def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     Apply the BSIC Style to the plot. First, it sets the font family and size
