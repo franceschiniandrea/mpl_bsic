@@ -1,0 +1,13 @@
+README.md
+setup.py
+mpl_bsic/__init__.py
+mpl_bsic/apply_bsic_style.py
+mpl_bsic/check_figsize.py
+mpl_bsic/format_timeseries_axis.py
+mpl_bsic/plot_trade.py
+mpl_bsic/preprocess_dataframe.py
+mpl_bsic.egg-info/PKG-INFO
+mpl_bsic.egg-info/SOURCES.txt
+mpl_bsic.egg-info/dependency_links.txt
+mpl_bsic.egg-info/requires.txt
+mpl_bsic.egg-info/top_level.txt

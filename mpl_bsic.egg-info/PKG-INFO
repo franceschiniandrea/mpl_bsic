@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: mpl-bsic
+Version: 0.1.7
+Summary: BSIC Plotting Library.
+Home-page: https://github.com/NotFrancee/mpl_bsic
+Author: A. Franceschini
+Author-email: me@franceschiniandrea.com
+Keywords: BSIC,matplotlib,Bocconi
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: cycler
+Requires-Dist: pandas
+
+# MPL BSIC Package
+
+## Read Docs
+
+1. Download the docs.pdf file (TODO)
+2. Hosted docs (TODO) 
+
+## If the matplotlib fonts does not work
+
+You have to install the .ttf and clean your matplotlib cache (full guide to come)
