@@ -5,6 +5,9 @@ from setuptools import find_packages
 with open(file="README.md", mode="r") as readme_handle:
     long_description = readme_handle.read()
 
+with open(file="VERSION", mode="r") as version_file:
+    version = version_file.read().strip()
+
 setup(
     # Define the library name, this is what is used along with `pip install`.
     name="mpl_bsic",
@@ -18,7 +21,7 @@ setup(
     #   - MAJOR VERSION 0
     #   - MINOR VERSION 1
     #   - MAINTENANCE VERSION 0
-    version="1.1.0",
+    version=version,
     # Here is a small description of the library. This appears
     # when someone searches for the library on https://pypi.org/search.
     description="BSIC Plotting Library.",

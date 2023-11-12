@@ -10,10 +10,13 @@ import sys
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+with open(file="../../VERSION", mode="r") as version_file:
+    version = version_file.read().strip()
+
 project = "mpl_bsic"
 copyright = "2023, Andrea Franceschini"
 author = "Andrea Franceschini"
-release = "1.0.0"
+release = version
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
