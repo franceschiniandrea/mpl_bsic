@@ -2,6 +2,7 @@
 
 ## Read Docs
 
+Here is the link for the docs: [ReadTheDocs](https://mpl-bsic.readthedocs.io/)
 1. Download the docs.pdf file (TODO)
 2. Hosted docs (TODO)
 
