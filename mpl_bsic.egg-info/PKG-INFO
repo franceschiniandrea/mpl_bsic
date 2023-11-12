@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: mpl-bsic
-Version: 1.1.0
+Version: 1.1.2
 Summary: BSIC Plotting Library.
 Home-page: https://github.com/NotFrancee/mpl_bsic
 Author: A. Franceschini
@@ -25,9 +25,14 @@ Requires-Dist: pandas
 
 ## Read Docs
 
+Here is the link for the docs: [ReadTheDocs](https://mpl-bsic.readthedocs.io/)
 1. Download the docs.pdf file (TODO)
-2. Hosted docs (TODO) 
+2. Hosted docs (TODO)
 
 ## If the matplotlib fonts does not work
 
-You have to install the .ttf and clean your matplotlib cache (full guide to come)
+You have to install the .ttf and clean your matplotlib cache (full guide on the docs)
+
+## TODOs
+
+2) plot trade (as bloomberg with last price and stuff)

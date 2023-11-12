@@ -1,6 +1,7 @@
 README.md
 setup.py
 mpl_bsic/__init__.py
+mpl_bsic/apply_bsic_logo.py
 mpl_bsic/apply_bsic_style.py
 mpl_bsic/check_figsize.py
 mpl_bsic/format_timeseries_axis.py
