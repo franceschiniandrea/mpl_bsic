@@ -1,15 +1,24 @@
 # MPL BSIC Package
 
+## Installation
+
+To install, run
+
+```
+pip install mpl_bsic
+```
+
+The package supports all python versions starting from 3.9
+
 ## Read Docs
 
-Here is the link for the docs: [ReadTheDocs](https://mpl-bsic.readthedocs.io/)
-1. Download the docs.pdf file (TODO)
-2. Hosted docs (TODO)
+Read the docs on [this link](https://mpl-bsic.readthedocs.io/)
 
-## If the matplotlib fonts does not work
+## If the matplotlib fonts do not work
 
-You have to install the .ttf and clean your matplotlib cache (full guide on the docs)
+Check the full guide on the documentation. Anyway, you need to install
+Garamond and Gill Sans MT and clear your matplotlib cache.
 
-## TODOs
+## Coming Next / TODOs (if you have any ideas be sure to tell me)
 
-2) plot trade (as bloomberg with last price and stuff)
+1) plot trade (as bloomberg with last price and stuff)
