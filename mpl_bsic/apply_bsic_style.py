@@ -100,18 +100,21 @@ This is the examples section. WIP.
 def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
-    Apply the BSIC Style to the plot. First, it sets the font family and size
-    for the overall plot and the color cycle to use.
+    First, it sets the font family and size for the overall plot
+    and the color cycle to use.
     Then, if the plot has a title, then it applies the default title style.
 
-    Should be called *before* plotting, to make sure
-    the right color cycle gets applied.
+    You must call this function **immediately after creating the figure
+    and axes and setting the title**, and in any case before plotting
+    (otherwise, colors won't be applied).
 
-    Warning: if you want to specify and set a title to the plot,
-    you can either set it before or give it to the function.
-    Otherwise, the correct style won't be applied.
-    This is forced by matplotlib
-    and must be done to make sure the fuction works.
+    .. warning:: if you want to specify and set a **title** to the plot,
+        you can either **set it before**
+        or give it to the function as a parameter.
+        Otherwise, the correct style won't be applied
+        and the title will be in Garamond.
+        This is forced by matplotlib (there's no way around it that I know of)
+        and must be done to make sure the fuction works.
 
     Parameters
     ----------
