@@ -23,8 +23,6 @@ release = version
 
 package_path = os.path.abspath("../../")
 sys.path.insert(0, package_path)
-print(package_path)
-print(os.listdir(package_path))
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -61,9 +59,7 @@ plot_include_source = True
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
-html_theme_options = {
-  "header_links_before_dropdown": 2
-}
+html_theme_options = {"header_links_before_dropdown": 2}
 
 
 # -- Intersphinx setup ----------------------------------------------------
