@@ -1,7 +1,6 @@
 {
-    "python.analysis.extraPaths": ["./src"],
+    // "python.analysis.extraPaths": ["./src"],
     "python.analysis.autoImportCompletions": true,
     "files.trimTrailingWhitespace": true,
-    "esbonio.sphinx.confDir": "",
     "editor.defaultFormatter": "ms-python.black-formatter"
 }

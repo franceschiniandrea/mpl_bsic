@@ -3,5 +3,3 @@
 dist
 **/__pycache__
 **/build
-doc/source/_autosummary/*
-**/_autosummary/*
