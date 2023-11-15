@@ -34,9 +34,8 @@ Examples
 This is the examples section. WIP.
 """
 
-DEFAULT_COLOR_CYCLE = cycler(
-    color=["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
-)
+BSIC_COLORS = ["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
+DEFAULT_COLOR_CYCLE = cycler(color=BSIC_COLORS)
 """Default Color Style.
 
 Cycle:
@@ -169,9 +168,8 @@ def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
 
-    if title is None:
-        title = ax.get_title()
-        if title == "":
-            print("warning: you did not specify a title")
 
-    ax.set_title(title, **DEFAULT_TITLE_STYLE)
+    # set lines colors
+    lines = ax.get_lines()
+    for line, color in zip(lines, BSIC_COLORS):
+        line.set(color=color)
