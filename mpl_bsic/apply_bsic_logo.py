@@ -2,7 +2,9 @@ from typing import Literal
 from matplotlib.axes import Axes
 import matplotlib.image as image
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import os
 
+import sysconfig
 
 Location = Literal["top left", "top right", "bottom left", "bottom right"]
 
@@ -14,7 +16,19 @@ _ANN_ANCHOR_POINTS = {
 }
 
 
-def _get_annotation_position(ax: Axes, location: Location):
+def _get_img_path(logo_type: str):
+    BASE_DIR = None
+
+    if os.path.isfile(sysconfig.get_path("platlib") + "/mpl_bsic"):
+        BASE_DIR = sysconfig.get_path("platlib") + "/mpl_bsic"
+    else:
+        BASE_DIR = os.path.dirname(__file__)
+
+    path = BASE_DIR + "/static/bsic_logo_" + logo_type + "_1x.png"
+
+    return path
+
+
     print(ax.get_xbound())
     x0, x1 = ax.get_xbound()
     y0, y1 = ax.get_ybound()
@@ -73,7 +87,7 @@ def apply_bsic_logo(
     TODO
     """
 
-    image_path = f"static/bsic_logo_{logo_type}_1x.png"
+    image_path = _get_img_path(logo_type)
     logo = image.imread(image_path)
 
     imagebox = OffsetImage(logo, zoom=scale)

@@ -1,0 +1,2 @@
+include mpl_bsic/static/*
+include VERSION

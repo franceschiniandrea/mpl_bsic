@@ -10,7 +10,7 @@ with open(file="VERSION", mode="r") as version_file:
 
 setup(
     # Define the library name, this is what is used along with `pip install`.
-    name="mpl_bsic",
+    name="mpl-bsic",
     # package_dir={"": "mpl_bsic"},
     # Define the author of the repository.
     author="A. Franceschini",
@@ -41,11 +41,11 @@ setup(
     # ORIGINAL
     # packages=find_namespace_packages(where=["mpl_bsic", "mpl_bsic.*"]),
     # # here we specify any package data.
-    package_data={
-        # And include any files found subdirectory of the "td" package.
-        # "td": ["app/*", "templates/*"],
-        'static': ['*'],
-    },
+    # package_data={
+    #     # And include any files found subdirectory of the "td" package.
+    #     # "td": ["app/*", "templates/*"],
+    #     'static': ['*'],
+    # },
     # I also have some package data, like photos and JSON files, so
     # I want to include those as well.
     include_package_data=True,

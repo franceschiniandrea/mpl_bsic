@@ -1,4 +1,6 @@
+MANIFEST.in
 README.md
+VERSION
 setup.py
 mpl_bsic/__init__.py
 mpl_bsic/apply_bsic_logo.py
@@ -12,4 +14,10 @@ mpl_bsic.egg-info/SOURCES.txt
 mpl_bsic.egg-info/dependency_links.txt
 mpl_bsic.egg-info/requires.txt
 mpl_bsic.egg-info/top_level.txt
+mpl_bsic/static/bsic_logo_formal_1x.png
+mpl_bsic/static/bsic_logo_formal_2x.png
+mpl_bsic/static/bsic_logo_formal_3x.png
+mpl_bsic/static/bsic_logo_square_1x.png
+mpl_bsic/static/bsic_logo_square_2x.png
+mpl_bsic/static/bsic_logo_square_3x.png
 tests/test_setup.py
