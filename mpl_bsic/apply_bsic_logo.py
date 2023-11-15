@@ -73,7 +73,7 @@ def apply_bsic_logo(
     TODO
     """
 
-    image_path = f"mpl_bsic/logos/bsic_logo_{logo_type}_1x.png"
+    image_path = f"static/bsic_logo_{logo_type}_1x.png"
     logo = image.imread(image_path)
 
     imagebox = OffsetImage(logo, zoom=scale)
