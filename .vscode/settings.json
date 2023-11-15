@@ -1,11 +1,16 @@
 {
     // "python.analysis.extraPaths": ["./src"],
     "python.analysis.autoImportCompletions": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.defaultFormatter": "ms-python.black-formatter",
     "python.analysis.typeCheckingMode": "basic",
-    "[toml]": {
-        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "files.trimTrailingWhitespace": true,
     },
-    "esbonio.sphinx.confDir": ""
+    "vim.smartRelativeLine": true,
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#38329A"
+    }
 }
