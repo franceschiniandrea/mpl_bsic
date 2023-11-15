@@ -41,10 +41,11 @@ setup(
     # ORIGINAL
     # packages=find_namespace_packages(where=["mpl_bsic", "mpl_bsic.*"]),
     # # here we specify any package data.
-    # package_data={
-    #     # And include any files found subdirectory of the "td" package.
-    #     "td": ["app/*", "templates/*"],
-    # },
+    package_data={
+        # And include any files found subdirectory of the "td" package.
+        # "td": ["app/*", "templates/*"],
+        'static': ['*'],
+    },
     # I also have some package data, like photos and JSON files, so
     # I want to include those as well.
     include_package_data=True,
