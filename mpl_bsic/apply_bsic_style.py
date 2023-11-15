@@ -183,7 +183,7 @@ def apply_bsic_style(fig: Figure, ax: Axes):
                             frames=1,
                             blit=False)
         # to make sure the animation lives until the end
-        plt.gcf().ani = ani  # type: ignore
+        fig.ani = ani  # type: ignore
 
     # set lines colors
     lines = ax.get_lines()
