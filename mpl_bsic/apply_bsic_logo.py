@@ -29,11 +29,10 @@ def _get_img_path(logo_type: str):
     return path
 
 
+def _get_annotation_position(ax: Axes, location: Location, fr: float):
     print(ax.get_xbound())
     x0, x1 = ax.get_xbound()
     y0, y1 = ax.get_ybound()
-
-    fr = 50
 
     xlen = x1 - x0
     ylen = y1 - y0
@@ -56,6 +55,7 @@ def apply_bsic_logo(
     location: Location = "top left",
     logo_type: Literal["formal", "square"] = "formal",
     alpha: float = 1,
+    closeness_to_border: float = 50,
 ):
     """Apply the BSIC Logo to the Plot.
 
@@ -93,7 +93,7 @@ def apply_bsic_logo(
     imagebox = OffsetImage(logo, zoom=scale)
     imagebox.image.set_alpha(alpha)
 
-    position = _get_annotation_position(ax, location)
+    position = _get_annotation_position(ax, location, closeness_to_border)
     ab = AnnotationBbox(
         imagebox,
         position,
