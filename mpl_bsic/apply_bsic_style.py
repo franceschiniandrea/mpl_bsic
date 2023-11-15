@@ -174,12 +174,16 @@ def apply_bsic_style(fig: Figure, ax: Axes):
         ani.event_source.stop()  # Stop the animation after the first frame
 
     # if title has already been set, apply the style
-    if ax.get_title() != '':
+    if ax.get_title() != "":
         ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
     # otherwise, wait for it to get applied and then apply the style
     else:
-        ani = FuncAnimation(fig, update_title_style, frames=[0])
-        plt.gcf().ani = ani  # to make sure the animation lives until the end
+        ani = FuncAnimation(fig,
+                            update_title_style,  # type: ignore
+                            frames=1,
+                            blit=False)
+        # to make sure the animation lives until the end
+        plt.gcf().ani = ani  # type: ignore
 
     # set lines colors
     lines = ax.get_lines()
