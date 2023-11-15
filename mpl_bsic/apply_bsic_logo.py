@@ -1,5 +1,6 @@
 from typing import Literal
 from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 import matplotlib.image as image
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import os
@@ -30,7 +31,6 @@ def _get_img_path(logo_type: str):
 
 
 def _get_annotation_position(ax: Axes, location: Location, fr: float):
-    print(ax.get_xbound())
     x0, x1 = ax.get_xbound()
     y0, y1 = ax.get_ybound()
 
@@ -50,6 +50,7 @@ def _get_annotation_position(ax: Axes, location: Location, fr: float):
 
 
 def apply_bsic_logo(
+    fig: Figure,
     ax: Axes,
     scale: float = 0.03,
     location: Location = "top left",
@@ -93,13 +94,27 @@ def apply_bsic_logo(
     imagebox = OffsetImage(logo, zoom=scale)
     imagebox.image.set_alpha(alpha)
 
-    position = _get_annotation_position(ax, location, closeness_to_border)
-    ab = AnnotationBbox(
-        imagebox,
-        position,
-        box_alignment=_ANN_ANCHOR_POINTS[location],
-        pad=0,
-        frameon=False,
-        bboxprops=dict(edgecolor="None"),
-    )
-    ax.add_artist(ab)
+    def gen_ann(ax):
+        position = _get_annotation_position(ax, location, closeness_to_border)
+        ab = AnnotationBbox(
+            imagebox,
+            position,
+            box_alignment=_ANN_ANCHOR_POINTS[location],
+            pad=0,
+            frameon=False,
+            bboxprops=dict(edgecolor="None"),
+        )
+        return ab
+
+    # this is to make sure the previous logo is deleted if a new one is added
+    ab = ax.add_artist(gen_ann(ax))
+    prev_artists = [ab]
+
+    def apply_logo(event):
+        ab = gen_ann(ax)
+        new_ab = ax.add_artist(ab)
+
+        prev_artists[0].remove()
+        prev_artists[0] = new_ab
+
+    fig.canvas.mpl_connect("draw_event", apply_logo)
