@@ -1,8 +1,8 @@
 from cycler import cycler
 from matplotlib import pyplot as plt
+from matplotlib.animation import FuncAnimation
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-from typing import Optional
 
 DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
@@ -96,7 +96,7 @@ This is the examples section. WIP.
 """
 
 
-def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
+def apply_bsic_style(fig: Figure, ax: Axes):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     First, it sets the font family and size for the overall plot
@@ -168,6 +168,18 @@ def apply_bsic_style(fig: Figure, ax: Axes, title: Optional[str] = None):
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
 
+    def update_title_style(_):
+        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+
+        ani.event_source.stop()  # Stop the animation after the first frame
+
+    # if title has already been set, apply the style
+    if ax.get_title() != '':
+        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+    # otherwise, wait for it to get applied and then apply the style
+    else:
+        ani = FuncAnimation(fig, update_title_style, frames=[0])
+        plt.gcf().ani = ani  # to make sure the animation lives until the end
 
     # set lines colors
     lines = ax.get_lines()
