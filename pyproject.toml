@@ -1,16 +1,24 @@
 [tool.poetry]
 name = "mpl_bsic"
-version = "1.1.16"
+version = "1.1.17"
 description = "BSIC Plotting Library"
 authors = ["Andrea Franceschini <andrea.franceschini2@studbocconi.it>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.9"
-matplotlib = "^3.8.0"
-numpy = "^1.26.0"
-pandas = "^2.1.0"
+python = ">=3.9"
+matplotlib = "^3.7"
+numpy = "^1.26"
+pandas = "^2.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # "error",
+    "ignore::UserWarning",
+    # note the use of single quote below to denote "raw" strings in TOML
+    # 'ignore:function ham\(\) is deprecated:DeprecationWarning',
+]
