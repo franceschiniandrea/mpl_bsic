@@ -178,12 +178,11 @@ def apply_bsic_style(fig: Figure, ax: Axes):
         ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
     # otherwise, wait for it to get applied and then apply the style
     else:
-        ani = FuncAnimation(fig,
-                            update_title_style,  # type: ignore
-                            frames=1,
-                            blit=False)
+        ani = FuncAnimation(
+            fig, update_title_style, frames=1, blit=False  # type: ignore
+        )
         # to make sure the animation lives until the end
-        fig.ani = ani  # type: ignore
+        fig.__setattr__("ani", ani)
 
     # set lines colors
     lines = ax.get_lines()
