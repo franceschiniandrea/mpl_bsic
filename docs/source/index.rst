@@ -47,26 +47,23 @@ you can use :func:`check_figsize() <mpl_bsic.check_figsize>`.
 .. rubric:: Plotting the data correctly
 
 In your python file, you will call :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>`
-on the plot you want to style.
-To make sure that the title is rendered with the correct style
-(it should be Gill Sans MT Bold & Italic, and a slightly larger
-font size than the other text),
-you must define it **before** calling :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>`,
-or it won't be styled correctly.
-Another option is to provide the function with the title as an argument.
+(and :func:`apply_bsic_logo() <mpl_bsic.apply_bsic_logo>`) on the plot you want to style.
 
-Be sure to read the docs for :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>`
-thoroughly to see how to use it correctly.
+Be sure to read the docs for :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>` and
+:func:`apply_bsic_logo() <mpl_bsic.apply_bsic_logo>` thoroughly to see how to use them correctly.
 
 .. code:: python
 
     from mpl_bsic import apply_bsic_style
+
     fig, ax = plt.subplots(1,1)
-    apply_bsic_style(fig, ax, title="YOUR TITLE HERE")
+    apply_bsic_style(fig, ax)
+    ax.set_title('your title')
 
     ... # plot your data and apply the style
     # fig.tight_layout() # DO NOT call this before exporting
 
+    # notice the arguments specified
     fig.savefig("your_filename.svg", dpi=1200, bbox_inches="tight")
 
 
@@ -111,10 +108,10 @@ Functions
    :toctree: _functions
 
    mpl_bsic.apply_bsic_style
+   mpl_bsic.apply_bsic_logo
    mpl_bsic.check_figsize
    mpl_bsic.format_timeseries_axis
    mpl_bsic.preprocess_dataframe
-   mpl_bsic.apply_bsic_logo
 
 Indices and tables
 ==================
