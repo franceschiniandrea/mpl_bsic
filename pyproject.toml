@@ -19,6 +19,7 @@ build-backend = "poetry.core.masonry.api"
 filterwarnings = [
     # "error",
     "ignore::UserWarning",
+    "ignore::DeprecationWarning",
     # note the use of single quote below to denote "raw" strings in TOML
     # 'ignore:function ham\(\) is deprecated:DeprecationWarning',
 ]
