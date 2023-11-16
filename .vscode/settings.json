@@ -3,5 +3,8 @@
     "python.analysis.autoImportCompletions": true,
     "files.trimTrailingWhitespace": true,
     "editor.defaultFormatter": "ms-python.black-formatter",
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    }
 }
