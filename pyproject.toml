@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mpl_bsic"
-version = "1.1.17"
+version = "1.1.18"
 description = "BSIC Plotting Library"
 authors = ["Andrea Franceschini <andrea.franceschini2@studbocconi.it>"]
 readme = "README.md"
