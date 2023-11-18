@@ -68,6 +68,7 @@ plot_include_source = True
 
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
+html_logo = "_static/bsic_logo_3x.png"
 html_theme_options = {"header_links_before_dropdown": 2}
 
 
