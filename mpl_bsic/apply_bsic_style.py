@@ -167,3 +167,6 @@ def apply_bsic_style(fig: Figure, ax: Axes):
     lines = ax.get_lines()
     for line, color in zip(lines, BSIC_COLORS):
         line.set(color=color)
+
+    if ax.get_legend() is not None:
+        ax.legend()
