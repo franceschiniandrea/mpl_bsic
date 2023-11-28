@@ -19,6 +19,8 @@
   </p>
 </p>
 
+![Contributors](https://img.shields.io/github/contributors/NotFrancee/mpl_bsic?color=dark-green) ![Issues](https://img.shields.io/github/issues/NotFrancee/mpl_bsic) ![License](https://img.shields.io/github/license/NotFrancee/mpl_bsic)
+
 ## Table Of Contents
 
 * [Installation](#installation)
