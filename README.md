@@ -35,6 +35,7 @@ Read the sections below for an overview of how to install and use the package. F
 
 ## Table Of Contents
 
+* [About the Project](#about-the-project)
 * [Installation](#installation)
 * [Docs and TLDR](#docs-and-tldr)
 * [If the matplotlib fonts do not work](#if-the-matplotlib-fonts-do-not-work)
