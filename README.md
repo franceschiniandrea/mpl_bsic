@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/NotFrancee/mpl_bsic">
-    <img src="https://github.com/NotFrancee/mpl_bsic/blob/main/mpl_bsic/static/bsic_logo_formal_3x.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">mpl-bsic</h3>
@@ -10,11 +10,11 @@
     Create matplotlib plots in BSIC Style!
     <br/>
     <br/>
-    <a href="https://github.com/NotFrancee/mpl_bsic"><strong>Explore the docs »</strong></a>
+    <a href="https://mpl-bsic.readthedocs.io/en/latest/"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
     <a href="https://github.com/NotFrancee/mpl_bsic/issues">Report Bug</a>
-    .
+    -
     <a href="https://github.com/NotFrancee/mpl_bsic/issues">Request Feature</a>
   </p>
 </p>
@@ -29,7 +29,7 @@
 
 ## Installation
 
-The package supports all python versions starting from 3.9
+The package supports all python versions starting from `3.9.0`
 
 To install, run
 
