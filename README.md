@@ -24,7 +24,9 @@
 
 ## About the Project
 
-![Example of plot](images/about_project.svg)
+<div align="center">
+  <img src="images/about_project.svg" alt="Plot Example" align='center'>
+</div>
 
 This package allows you to style matplotlib plots using BSIC Style (fonts, colors, logos, etc.) to later use them in BSIC articles. It also
 provides utility function to handle the formatting of the axis, check the size of the figures, and more!
