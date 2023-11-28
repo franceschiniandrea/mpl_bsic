@@ -21,7 +21,7 @@
 
 ## Table Of Contents
 
-* [Installation](#intallation)
+* [Installation](#installation)
 * [Docs and TLDR](#docs-and-tldr)
 * [If the matplotlib fonts do not work](#if-the-matplotlib-fonts-do-not-work)
 * [Contributing](#contributing)
