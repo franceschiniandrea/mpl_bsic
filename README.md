@@ -21,6 +21,16 @@
 
 ![Contributors](https://img.shields.io/github/contributors/NotFrancee/mpl_bsic?color=dark-green) ![Issues](https://img.shields.io/github/issues/NotFrancee/mpl_bsic) ![License](https://img.shields.io/github/license/NotFrancee/mpl_bsic)
 
+
+## About the Project
+
+![Example of plot](images/about_project.svg)
+
+This package allows you to style matplotlib plots using BSIC Style (fonts, colors, logos, etc.) to later use them in BSIC articles. It also
+provides utility function to handle the formatting of the axis, check the size of the figures, and more!
+
+Read the sections below for an overview of how to install and use the package. For further information, be sure to [read the docs](https://mpl-bsic.readthedocs.io/en/latest/)!
+
 ## Table Of Contents
 
 * [Installation](#installation)
