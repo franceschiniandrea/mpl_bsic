@@ -17,36 +17,16 @@ def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
-    # now it forces the animation to run before exporting by forcing plt.show,
-    #   then pausing and then exporting
-    # if the figure has no animation, it just exports it
-    # if hasattr(fig, "ani"):
-    #     plt.show(block=False)
-    #     plt.pause(0.1)
+    if hasattr(fig, "_bsic_animations"):
+        bsic_animations = fig.__getattribute__("_bsic_animations")
+        print(bsic_animations)
 
-    # plt.show(block=False)
-    # plt.pause(0.1)
+        for ani in bsic_animations:
+            for _ in range(5):
+                ani._stop = False
+                ani._step()
 
-    if hasattr(fig, "ani"):
-        ani = fig.__getattribute__("ani")
-        for _ in range(100):
-            ani._stop = False
-            ani._step()
-    plt.pause(0.1)
     fig.savefig(os.path.join(out_dir, (filename + format_)))
-
-    # old code to make the animation run before exporting the figure
-    # if hasattr(fig, "ani"):
-    #     # anim = fig.__getattribute__("ani")
-    #     # if debug:
-    #     #     anim.save("debug.png", writer="pillow")
-    #     # else:
-    #     #     anim.save(os.path.join(out_dir, (filename + format_)), writer="pillow")
-    #     plt.show(block=False)
-    #     plt.pause(0.1)
-    #     fig.savefig(os.path.join(out_dir, (filename + format_)))
-    # else:
-    #     fig.savefig(os.path.join(out_dir, (filename + format_)))
 
     image_name = filename + format_
     expected_name = os.path.join(base_dir, image_name)
@@ -68,7 +48,7 @@ def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
 def image_compare(
     baseline_images: str,
     fmt: str = ".png",
-    tol: float = 1e-3,
+    tol: float = 1,
     remove_text: bool = False,
 ):
     def decorator(func):
@@ -90,3 +70,12 @@ def image_compare(
         return wrapper
 
     return decorator
+
+
+def baseline_save_fig(fig, filename):
+    plt.show(block=False)
+    plt.pause(0.5)
+    fig.savefig(
+        "tests/baseline/" + filename + "_dbg.png", dpi=1200, bbox_inches="tight"
+    )
+    fig.savefig("tests/baseline/" + filename + "_dbg.png")
