@@ -43,7 +43,7 @@ class TestFigsize:
 
         assert width_ret == width and height_ret == height
 
-    def test_unspecified_height(self):
+    def test_width_and_aspectratio(self):
         width = 7.32
         height = None
         aspect_ratio = 16 / 9
@@ -51,3 +51,13 @@ class TestFigsize:
         width_ret, height_ret = check_figsize(width, height, aspect_ratio)
 
         assert width_ret == width and height_ret - width * aspect_ratio < 1e-5
+
+    def test_unspecified_height_err(self):
+        width = 7.32
+        height = None
+        aspect_ratio = None
+
+        try:
+            check_figsize(width, height, aspect_ratio)
+        except Exception as e:
+            assert str(e) == "You must specify either height or aspect_ratio"
