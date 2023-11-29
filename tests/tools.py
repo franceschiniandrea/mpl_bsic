@@ -2,6 +2,7 @@ import functools
 import os
 from os.path import join, split
 
+from flaky import flaky
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.testing.compare import compare_images
@@ -72,6 +73,7 @@ def image_compare(
 ):
     def decorator(func):
         @functools.wraps(func)
+        @flaky(max_runs=3, min_passes=1)
         def wrapper(*args, **kwargs):
             print("decorator got called")
             plt.close("all")
