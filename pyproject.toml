@@ -11,6 +11,13 @@ matplotlib = "^3.7"
 numpy = "^1.26"
 pandas = "^2.1"
 
+[tool.poetry.group.testing]
+optional = true
+
+[tool.poetry.group.testing.dependencies]
+pytest = ">=7.0"
+flaky = ">=3.6"
+
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
