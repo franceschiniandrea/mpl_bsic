@@ -109,7 +109,8 @@ def apply_bsic_logo(
     imagebox = OffsetImage(logo, zoom=scale)
     imagebox.image.set_alpha(alpha)
 
-    def gen_ann(ax):
+    # generates the annotation box containing the logo at the correct position
+    def gen_logo_annotation_box(ax):
         position = _get_annotation_position(ax, location, closeness_to_border)
         ab = AnnotationBbox(
             imagebox,
@@ -121,12 +122,7 @@ def apply_bsic_logo(
         )
         return ab
 
-    # this is to make sure the previous logo is deleted if a new one is added
-    ab = ax.add_artist(gen_ann(ax))
-    prev_artists = [ab]
-
-    def apply_logo(event):
-        ab = gen_ann(ax)
+        ab = gen_logo_annotation_box(ax)
         new_ab = ax.add_artist(ab)
 
         prev_artists[0].remove()
