@@ -8,7 +8,7 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 
-import sysconfig
+from utils.set_animations import insert_animation
 
 Location = Literal["top left", "top right", "bottom left", "bottom right"]
 
@@ -122,10 +122,11 @@ def apply_bsic_logo(
         )
         return ab
 
+    def logo_animation_func(_):
         ab = gen_logo_annotation_box(ax)
         new_ab = ax.add_artist(ab)
+        return [new_ab]
 
-        prev_artists[0].remove()
-        prev_artists[0] = new_ab
+    logo_animation = FuncAnimation(fig, logo_animation_func, frames=1, blit=False)
 
-    fig.canvas.mpl_connect("draw_event", apply_logo)
+    insert_animation(fig, logo_animation)

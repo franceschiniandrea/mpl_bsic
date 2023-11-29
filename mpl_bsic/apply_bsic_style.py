@@ -4,6 +4,8 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
+from utils.set_animations import insert_animation
+
 DEFAULT_TITLE_STYLE = {
     "fontname": "Gill Sans MT",
     "color": "black",
@@ -171,8 +173,8 @@ def apply_bsic_style(fig: Figure, ax: Axes):
         ani = FuncAnimation(
             fig, update_title_style, frames=1, blit=False  # type: ignore
         )
-        # to make sure the animation lives until the end
-        fig.__setattr__("ani", ani)
+
+        insert_animation(fig, ani)
 
     # set lines colors if already plotted
     lines = ax.get_lines()
