@@ -28,11 +28,6 @@ class TestLogoTopLeft:
 
         ax.plot(x, y)
         ax.set_title("Sin(x)")
-        # plt.show()
-
-        # fig.savefig("test_logo_1.png")
-
-        # plt.show()
 
         return fig
 
@@ -225,11 +220,6 @@ class TestLogoBtmRight:
 
         ax.plot(x, y)
         ax.set_title("Sin(x)")
-        # plt.show()
-
-        # fig.savefig("test_logo_btm_rx.png")
-
-        # plt.show()
 
         return fig
 
