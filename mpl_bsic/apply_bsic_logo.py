@@ -1,9 +1,12 @@
+import os
+import sysconfig
 from typing import Literal
+
+import matplotlib.image as image
+from matplotlib.animation import FuncAnimation
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
-import matplotlib.image as image
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-import os
+from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 
 import sysconfig
 
@@ -60,9 +63,11 @@ def apply_bsic_logo(
 ):
     """Apply the BSIC Logo to the Plot.
 
-    You can specify the scale, location, type, alpha, and how close the logo is to the border.
-    Since the optimal values for these parameters will value from plot to plot, the suggestion is to tweak them
-    util you find the right values for your plot. Choose the location so that the plot and logo overlap as little
+    You can specify the scale, location, type, alpha, and how close
+    the logo is to the border.
+    Since the optimal values for these parameters will value from plot to plot,
+    the suggestion is to tweak them until you find the right values for your plot.
+    Choose the location so that the plot and logo overlap as little
     as possible.
 
     Parameters
@@ -84,7 +89,8 @@ def apply_bsic_logo(
         The alpha to use for the image (if you want transparency),
         by default 1.
     closeness_to_border : float, optional
-        How close the logo should be to the border. A larger value means the logo will be closer to the border,
+        How close the logo should be to the border.
+        A larger value means the logo will be closer to the border,
         by default 50.
 
     See Also
@@ -96,6 +102,7 @@ def apply_bsic_logo(
     TODO
     """
 
+    # gets the path for the logo and reads the image
     image_path = _get_img_path(logo_type)
     logo = image.imread(image_path)
 

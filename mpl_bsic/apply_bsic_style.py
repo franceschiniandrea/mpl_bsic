@@ -99,18 +99,26 @@ This is the examples section. TODO.
 def apply_bsic_style(fig: Figure, ax: Axes):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
-    You can call this function at any point in your code, the BSIC style will be applied regardless. Before saving,
-    however, make sure you do ``plt.show()`` so that the style gets applied to the plot. This function works by adding an animation
-    such that, regardless of where you specify your title, it will be updated with the correct style.
+    You can call this function at any point in your code, the BSIC style will be applied
+    regardless. Before saving, however, make sure you do ``plt.show()``
+    so that the style gets applied to the plot.
+    This function works by adding an animation such that,
+    regardless of where you specify your title,
+    it will be updated with the correct style.
 
-    First, the function will set the correct fontsizes and font family for the plot text (labels, ticks...).
+    First, the function will set the correct fontsizes
+    and font family for the plot text (labels, ticks...).
 
-    It will also set the color cycle used in matplotlib to the colors specified in the BSIC design standards.
-    If you already plotted, it will, again, change the colors of the lines to the correct ones.
+    It will also set the color cycle used in matplotlib to the colors
+    specified in the BSIC design standards.
+    If you already plotted, it will, again,
+    change the colors of the lines to the correct ones.
 
-    The function will make sure that, whenever you update the title of the plot, it gets drawn with the correct style.
+    The function will make sure that, whenever you update the title of the plot,
+    it gets drawn with the correct style.
 
-    .. warning:: You have to make sure you always call ``plt.show()``, even if you just want to export the figure. This makes sure
+    .. warning:: You have to make sure you always call ``plt.show()``,
+        even if you just want to export the figure. This makes sure
         that the animation is performed and the correct style is applied to the title.
 
     Parameters
@@ -142,11 +150,14 @@ def apply_bsic_style(fig: Figure, ax: Axes):
 
         ax.plot(x,y)
     """
+
+    # sets font family, size, and cycler to rcparams
     plt.rcParams["font.sans-serif"] = BSIC_FONT_FAMILY
     plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
 
+    # function to animate the styling of the title
     def update_title_style(_):
         ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
 
@@ -163,10 +174,11 @@ def apply_bsic_style(fig: Figure, ax: Axes):
         # to make sure the animation lives until the end
         fig.__setattr__("ani", ani)
 
-    # set lines colors
+    # set lines colors if already plotted
     lines = ax.get_lines()
     for line, color in zip(lines, BSIC_COLORS):
         line.set(color=color)
 
+    # set legend colors if already plotted
     if ax.get_legend() is not None:
         ax.legend()
