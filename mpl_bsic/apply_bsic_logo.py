@@ -26,7 +26,7 @@ def _get_img_path(logo_type: str):
     if os.path.isfile(sysconfig.get_path("platlib") + "/mpl_bsic"):
         BASE_DIR = sysconfig.get_path("platlib") + "/mpl_bsic"  # pragma: no cover
     else:
-        BASE_DIR = os.path.dirname(__file__)
+        BASE_DIR = os.getcwd()
 
     path = BASE_DIR + "/static/bsic_logo_" + logo_type + "_1x.png"
 
