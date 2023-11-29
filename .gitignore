@@ -5,3 +5,4 @@ dist
 **/build
 tests/output_images/*
 htmlcov/**/*
+.coverage
