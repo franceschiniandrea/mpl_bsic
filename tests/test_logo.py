@@ -66,6 +66,21 @@ class TestLogoTopLeft:
 
         return fig
 
+    @image_compare(baseline_images="test_logo_top_lx")
+    def test_logo_4(self):
+        """Logo gets called before style"""
+
+        x, y = _gen_data()
+        fig, ax = plt.subplots(1, 1)
+        ax: Axes
+
+        ax.plot(x, y)
+        ax.set_title("Sin(x)")
+        apply_bsic_logo(fig, ax)
+        apply_bsic_style(fig, ax)
+
+        return fig
+
 
 class TestLogoTopRight:
     """Tests when the logo is positioned on the top left corner of the plot"""
