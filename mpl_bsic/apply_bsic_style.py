@@ -4,6 +4,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
+from utils.add_fonts import add_fonts
 from utils.set_animations import insert_animation
 
 DEFAULT_TITLE_STYLE = {
@@ -79,24 +80,6 @@ Examples
 This is the examples section. WIP.
 """
 
-BSIC_FONT_FAMILY = "Garamond"
-"""Default Font Family for the plot (text, labels, ticks).
-
-The default font family used for the plots is ``Garamond``.
-
-See Also
---------
-mpl_bsic.apply_bsic_style : The function that applies the style to the plot.
-mpl_bsic.DEFAULT_TITLE_STYLE :
-    The default title style that gets applied to the plot.
-mpl_bsic.DEFAULT_FONT_SIZE :
-    The default font size that gets applied to the plot.
-
-Examples
---------
-This is the examples section. TODO.
-"""
-
 
 def apply_bsic_style(fig: Figure, ax: Axes):
     r"""Apply the BSIC Style to an existing matplotlib plot.
@@ -152,9 +135,10 @@ def apply_bsic_style(fig: Figure, ax: Axes):
 
         ax.plot(x,y)
     """
+    add_fonts()
 
     # sets font family, size, and cycler to rcparams
-    plt.rcParams["font.sans-serif"] = BSIC_FONT_FAMILY
+    plt.rcParams["font.sans-serif"] = "Garamond"
     plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
