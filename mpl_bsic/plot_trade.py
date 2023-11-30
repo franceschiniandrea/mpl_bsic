@@ -131,8 +131,7 @@ def plot_trade(
     date_ticks_freq: int = 1,
     date_ticks_format: str = "%b %d, %Y",
 ):
-    """
-    Plot a trade performance vs the underlying.
+    """Plot a trade performance vs the underlying.
 
     Create a figure with two subplots. On the top, the PnL of the trade is plotted,
     while on the bottom the underlying is plotted.
@@ -189,15 +188,15 @@ def plot_trade(
         frequency, there will be 1 tick every week.
         Choose so that the axis is not cluttered.
     date_ticks_format : str, optional
-        The format used for the date ticks, by default "%b %d, %Y". I recommend
+        The format used for the date ticks, by default ``"%b %d, %Y"``. I recommend
         using the default, but you can change it to whatever
-        you find more suitable
+        you find more suitable.
 
     Returns
     -------
     tuple[matplotlib.figure.Figure, matplotlib.axes.Axes]
         A tuple containing the figure and the tuple of two axis just created.
-        You can later use this to save the fig for export, do `fig.show()`,
+        You can later use this to save the fig for export, do ``fig.show()``,
         or further customize the plot.
 
     See Also
@@ -212,8 +211,6 @@ def plot_trade(
     Examples
     --------
     Examples will come soon.
-
-
     """
     dates, entry_date = _get_dates(underlying, pnl, months_offset)
 
