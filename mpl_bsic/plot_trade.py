@@ -73,14 +73,27 @@ def _get_dates(
     return dates, entry_date
 
 
+def _plot_entry_point(
+    ax: Axes,
+    entry_date: pd.Timestamp,
+    underlying: pd.Series,
+    marker_location: Literal["top", "bottom"],
+    marker_size: int,
+):
     """Plots the entry point of the trade."""
+
+    offset = 0.075 if marker_location == "top" else -0.075
+    marker = "v" if marker_location == "top" else "^"
+
+    price_at_entry = underlying.loc[entry_date]
+    marker_loc = price_at_entry * (1 + offset)
 
     ax.scatter(
         [entry_date.strftime("%Y-%m-%d")],
-        [underlying.loc[entry_date] * 0.925],
+        [marker_loc],
         color="g",
-        marker="^",
-        s=10,
+        marker=marker,
+        s=marker_size,
     )
 
 
@@ -112,6 +125,8 @@ def plot_trade(
     title: str,
     underlying_name: str,
     months_offset: int = 3,
+    entry_point_marker_loc: Literal["top", "bottom"] = "top",
+    entry_point_marker_size: int = 10,
 ):
     """
     TODO Summary
@@ -154,7 +169,13 @@ def plot_trade(
     _plot_last_price(pnl_ax, pnl)
 
     # plot entry point
-    _plot_entry_point(underlying_ax, entry_date, underlying)
+    _plot_entry_point(
+        underlying_ax,
+        entry_date,
+        underlying,
+        entry_point_marker_loc,
+        entry_point_marker_size,
+    )
 
     # plot areas of profit and loss
     pnl_ax.fill_between(
