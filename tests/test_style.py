@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
-from tools import image_compare
+from tools import baseline_save_fig, image_compare  # noqa
 
 from mpl_bsic import apply_bsic_style
 
