@@ -2,22 +2,11 @@
 
 import os
 import sys
-import re
 
 package_path = os.path.abspath("../../")
 sys.path.insert(0, package_path)
 
 
-def get_property(prop, project):
-    print(os.getcwd())
-    result = re.search(
-        r'{}\s*=\s*[\'"]([^\'"]*)[\'"]'.format(prop),
-        open("../../" + project + "/__init__.py").read(),
-    )
-    return result.group(1)
-
-
-#
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
@@ -27,7 +16,8 @@ def get_property(prop, project):
 project = "mpl_bsic"
 copyright = "2023, Andrea Franceschini"
 author = "Andrea Franceschini"
-release = get_property("__version__", "mpl_bsic")
+release = "1.1.6"
+version = release[:3]
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
