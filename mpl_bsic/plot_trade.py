@@ -33,6 +33,7 @@ def _plot_xline(ax: Axes, y: float, trade_start: str, color: str):
 
 
 def _plot_last_price(ax: Axes, data: pd.Series):
+    """Plots the last price of the series on the right side of the plot."""
     # plot last price
     last_price = float(data.iloc[-1])
     y_min, y_max = ax.get_ylim()
@@ -51,6 +52,7 @@ def _plot_last_price(ax: Axes, data: pd.Series):
 def _get_dates(
     underlying: pd.Series, pnl: pd.Series, months_offset: int
 ) -> tuple[pd.DatetimeIndex, pd.Timestamp]:
+    """Gets the dates for the trade."""
     if not isinstance(underlying.index, pd.DatetimeIndex):
         raise Exception("Index of underlying must be a DatetimeIndex")
 
@@ -71,7 +73,8 @@ def _get_dates(
     return dates, entry_date
 
 
-def _plot_entry_point(ax: Axes, entry_date: pd.Timestamp, underlying: pd.Series):
+    """Plots the entry point of the trade."""
+
     ax.scatter(
         [entry_date.strftime("%Y-%m-%d")],
         [underlying.loc[entry_date] * 0.925],
@@ -84,6 +87,7 @@ def _plot_entry_point(ax: Axes, entry_date: pd.Timestamp, underlying: pd.Series)
 def _preprocess_data(
     underlying: pd.Series, pnl: pd.Series, dates: pd.DatetimeIndex, pnl_type: str
 ):
+    """Preprocesses the data."""
     underlying = underlying.copy().loc[dates]
     pnl = pnl.copy()
 
@@ -112,8 +116,6 @@ def plot_trade(
     """
     TODO Summary
     """
-    # TODO plot pnl cumsum
-
     dates, entry_date = _get_dates(underlying, pnl, months_offset)
 
     underlying, pnl = _preprocess_data(underlying, pnl, dates, pnl_type)
