@@ -140,8 +140,8 @@ def apply_bsic_logo(
         logo_animation_func,
         frames=1,  # just one frame
         blit=False,
-        repeat_delay=0.5,  # to not make the animation run too fast
-        cache_frame_data=False,  # to avoid caching the image which causes lag
+        cache_frame_data=False,  # to avoid caching the image which causes lag,
+        repeat=False,  # to make sure it runs only once when calling plt.show()
     )
 
     insert_animation(fig, logo_animation)
