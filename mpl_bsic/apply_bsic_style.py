@@ -181,8 +181,9 @@ def apply_bsic_style(fig: Figure, ax: Axes | np.ndarray):
     if fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **DEFAULT_TITLE_STYLE)
 
+    if isinstance(ax, Axes):
+        _style_axis(fig, ax)
+    else:
         for axis in ax:
             axis: Axes
             _style_axis(fig, axis)
-    else:
-        _style_axis(fig, ax)
