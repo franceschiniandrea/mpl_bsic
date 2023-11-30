@@ -23,8 +23,13 @@ def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
 
         for ani in bsic_animations:
             for _ in range(5):
-                ani._stop = False
-                ani._step()
+                try:
+                    ani._stop = False
+                    ani._step()
+                except (
+                    AttributeError
+                ):  # catches when animation has no more frames and cannot step anymore
+                    break
 
     fig.savefig(os.path.join(out_dir, (filename + format_)))
 
