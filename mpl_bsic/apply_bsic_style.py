@@ -177,7 +177,10 @@ def apply_bsic_style(fig: Figure, ax: Axes | np.ndarray):
     plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
 
-    if isinstance(ax, np.ndarray):
+    # apply style to suptitle
+    if fig.get_suptitle() != "":
+        fig.suptitle(fig.get_suptitle(), **DEFAULT_TITLE_STYLE)
+
         for axis in ax:
             axis: Axes
             _style_axis(fig, axis)
