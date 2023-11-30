@@ -52,6 +52,12 @@ pygments_style = "sphinx"
 
 # -- Options for matplotlib plots -----------------------------------------
 plot_include_source = True
+plot_formats = [("png", 900), ("pdf", 900)]
+plot_pre_code = """
+import numpy as np
+import matplotlib.pyplot as plt
+from utils.run_animations import run_animations
+"""
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
