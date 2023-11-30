@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Docs for mpl_bsic
-====================================
+Docs for mpl_bsic - Version |version| 
+===================================================
 
 ``mpl_bsic`` helps you style matplotlib plots in BSIC style.
 
@@ -109,6 +109,7 @@ Functions
 
    mpl_bsic.apply_bsic_style
    mpl_bsic.apply_bsic_logo
+   mpl_bsic.plot_trade 
    mpl_bsic.check_figsize
    mpl_bsic.format_timeseries_axis
    mpl_bsic.preprocess_dataframe
