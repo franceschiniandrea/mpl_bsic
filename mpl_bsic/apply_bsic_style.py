@@ -1,3 +1,5 @@
+from typing import Union
+
 import numpy as np
 from cycler import cycler
 from matplotlib import pyplot as plt
@@ -116,7 +118,7 @@ def _style_axis(fig: Figure, ax: Axes):
         ax.legend()
 
 
-def apply_bsic_style(fig: Figure, ax: Axes | np.ndarray):
+def apply_bsic_style(fig: Figure, ax: Union[Axes, np.ndarray]):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     You can call this function at any point in your code, the BSIC style will be applied
