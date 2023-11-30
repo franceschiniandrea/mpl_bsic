@@ -87,3 +87,46 @@ class TestStyle:
         ax.legend()
 
         return fig
+
+    @image_compare(baseline_images="test_style_multiple_axs")
+    def test_multiple_axs_1(self):
+        """Tests when the function gets called
+        with a figure that has more than one axis
+        """
+
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        apply_bsic_style(fig, axs)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        return fig
+
+    def test_multiple_axs_2(self):
+        """Tests when the function gets called
+        with a figure that has more than one axis
+        """
+
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs)
+
+        return fig
