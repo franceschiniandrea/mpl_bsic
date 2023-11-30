@@ -1,3 +1,4 @@
+import numpy as np
 from cycler import cycler
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -81,7 +82,41 @@ This is the examples section. WIP.
 """
 
 
-def apply_bsic_style(fig: Figure, ax: Axes):
+def _style_axis(fig: Figure, ax: Axes):
+    ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
+
+    def update_title_anim(_):
+        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+
+        return ax.artists
+
+    # if title has already been set, apply the style
+    if ax.get_title() != "":
+        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+    # otherwise, wait for it to get applied and then apply the style
+    else:
+        ani = FuncAnimation(
+            fig,
+            update_title_anim,
+            frames=1,
+            blit=False,
+            cache_frame_data=False,
+            repeat=False,
+        )
+
+        insert_animation(fig, ani)
+
+    # set line colors if already plotted
+    lines = ax.get_lines()
+    for line, color in zip(lines, BSIC_COLORS):
+        line.set(color=color)
+
+    # set legend colors if already plotted
+    if ax.get_legend() is not None:
+        ax.legend()
+
+
+def apply_bsic_style(fig: Figure, ax: Axes | np.ndarray):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     You can call this function at any point in your code, the BSIC style will be applied
@@ -141,36 +176,10 @@ def apply_bsic_style(fig: Figure, ax: Axes):
     plt.rcParams["font.sans-serif"] = "Garamond"
     plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
-    ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
 
-    # function to animate the styling of the title
-    def update_title_style(_):
-        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
-
-        return ax.artists
-
-    # if title has already been set, apply the style
-    if ax.get_title() != "":
-        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
-
-    # otherwise, wait for it to get applied and then apply the style
+    if isinstance(ax, np.ndarray):
+        for axis in ax:
+            axis: Axes
+            _style_axis(fig, axis)
     else:
-        ani = FuncAnimation(
-            fig,
-            update_title_style,
-            frames=1,
-            blit=False,
-            cache_frame_data=False,
-            repeat=False,
-        )
-
-        insert_animation(fig, ani)
-
-    # set lines colors if already plotted
-    lines = ax.get_lines()
-    for line, color in zip(lines, BSIC_COLORS):
-        line.set(color=color)
-
-    # set legend colors if already plotted
-    if ax.get_legend() is not None:
-        ax.legend()
+        _style_axis(fig, ax)
