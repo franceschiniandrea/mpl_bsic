@@ -95,11 +95,54 @@ def apply_bsic_logo(
 
     See Also
     --------
-    TODO
+    mpl_bsic.apply_bsic_style :
+        Applies the BSIC Style to plots.
 
     Examples
     --------
-    TODO
+
+    .. plot::
+        :alt: example plot using apply_bsic_logo() (top right, formal logo)
+
+        from mpl_bsic import apply_bsic_style, apply_bsic_logo
+
+        import matplotlib.pyplot as plt
+
+        x = np.linspace(0, 5, 100)
+        y = np.cos(x)
+
+        fig, ax = plt.subplots(1, 1)
+        ax.set_title('Cos(x)') # set the title before applying the style
+        apply_bsic_style(fig, ax)
+        apply_bsic_logo(fig, ax, location='top right', scale=0.03)
+
+        ax.plot(x,y)
+        run_animations(fig) # only needed for the docs, don't call in the actual code
+
+    .. plot::
+        :alt: example plot using apply_bsic_logo() (btm left, square logo)
+
+        from mpl_bsic import apply_bsic_style, apply_bsic_logo
+
+        import matplotlib.pyplot as plt
+
+        x = np.linspace(0, 5, 100)
+        y = np.cos(x)
+
+        fig, ax = plt.subplots(1, 1)
+        ax.set_title('Cos(x)') # set the title before applying the style
+        apply_bsic_style(fig, ax)
+        apply_bsic_logo(
+            fig,
+            ax,
+            location='bottom left',
+            scale=0.05,
+            logo_type='square', # use the square logo
+            closeness_to_border=25 # make the logo closer to the border
+        )
+
+        ax.plot(x,y)
+        run_animations(fig) # only needed for the docs, don't call in the actual code
     """
 
     # gets the path for the logo and reads the image

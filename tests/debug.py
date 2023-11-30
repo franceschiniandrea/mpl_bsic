@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mpl_bsic import apply_bsic_logo, apply_bsic_style
+from utils.run_animations import run_animations
 
 x = np.linspace(0, 5, 100)
 y = np.cos(x)
@@ -15,5 +16,5 @@ apply_bsic_logo(fig, ax)
 ax.set_title("Cos(x)")  # set the title before applying the style
 
 ax.plot(x, y)
-
+run_animations(fig)
 plt.show()

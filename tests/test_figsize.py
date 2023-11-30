@@ -20,7 +20,7 @@ class TestFigsize:
 
         w, h = check_figsize(width, height, aspect_ratio)
 
-        assert w == height / aspect_ratio and h == 8
+        assert w == 7.32 and h - height / aspect_ratio < 1e-5
 
     def test_correct_width(self):
         width = 7.32

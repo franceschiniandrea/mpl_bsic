@@ -12,5 +12,6 @@
     "vim.smartRelativeLine": true,
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "#38329A"
-    }
+    },
+    "esbonio.sphinx.confDir": ""
 }
