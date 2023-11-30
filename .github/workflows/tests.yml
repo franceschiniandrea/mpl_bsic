@@ -1,4 +1,4 @@
-name: Test using Poetry and pytest
+name: Poetry run tests (pytest)
 
 on: pull_request
 
