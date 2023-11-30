@@ -1,10 +1,12 @@
-from typing import Optional
+from typing import Literal
 
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.axes import Axes
 
-from mpl_bsic import apply_bsic_style
+from .apply_bsic_logo import apply_bsic_logo
+from .apply_bsic_style import apply_bsic_style
+from .format_timeseries_axis import format_timeseries_axis
 
 
 def _plot_xline(ax: Axes, y: float, trade_start: str, color: str):
@@ -30,53 +32,13 @@ def _plot_xline(ax: Axes, y: float, trade_start: str, color: str):
     )
 
 
-def plot_trade(
-    underlying: pd.DataFrame,
-    pnl: pd.DataFrame,
-    title: Optional[str] = None,
-    stop_loss: Optional[float] = None,
-    take_profit: Optional[float] = None,
-):
-    """
-    TODO Summary
-
-    Parameters
-    ----------
-    underlying : pd.DataFrame
-        _description_
-    pnl : pd.DataFrame
-        _description_
-    """
-
-    pnl = pnl.copy().reindex(underlying.index)
-    pnl.fillna(0, inplace=True)
-
-    fig, axs = plt.subplots(
-        2, 1, sharex=True, gridspec_kw={"hspace": 0.1, "height_ratios": [1, 2]}
-    )
-
-    axs: list[Axes]
-
-    pnl_ax, underlying_ax = axs
-    if title is not None:
-        pnl_ax.set_title(title)
-
-    apply_bsic_style(fig, pnl_ax)
-    apply_bsic_style(fig, underlying_ax)
-
-    underlying_ax.plot(underlying.index, underlying)
-    underlying_ax.set_ylabel("Underlying")
-    pnl_ax.plot(pnl.index, pnl)
-    # pnl_ax.set_xticks([])
-    pnl_ax.set_ylabel("PnL")
-
-    xlims = underlying_ax.get_xlim()
-
+def _plot_last_price(ax: Axes, data: pd.Series):
     # plot last price
-    last_price = float(underlying.iloc[0])  # type: ignore
-    y_min, y_max = underlying_ax.get_ylim()
-    bbox_props = dict(boxstyle="round", fc="w", ec="k", lw=1)
-    underlying_ax.annotate(
+    last_price = float(data.iloc[-1])
+    y_min, y_max = ax.get_ylim()
+
+    bbox_props = dict(boxstyle="round", fc="w", ec="k", lw=0.75)
+    ax.annotate(
         str(int(last_price)),
         xycoords="axes fraction",
         xy=(1.02, (last_price - y_min) / (y_max - y_min)),
@@ -85,15 +47,142 @@ def plot_trade(
         verticalalignment="center",
     )
 
-    # plot stop loss and take profit
-    trade_start = pnl[pnl["pnl"] > 0].index[-1]
-    print(trade_start, pnl, pnl[pnl > 0])
-    if stop_loss is not None:
-        _plot_xline(underlying_ax, stop_loss, trade_start=trade_start, color="r")
-    if take_profit is not None:
-        _plot_xline(underlying_ax, take_profit, trade_start=trade_start, color="g")
 
-    underlying_ax.set_xlim(xlims)
+def _get_dates(
+    underlying: pd.Series, pnl: pd.Series, months_offset: int
+) -> tuple[pd.DatetimeIndex, pd.Timestamp]:
+    if not isinstance(underlying.index, pd.DatetimeIndex):
+        raise Exception("Index of underlying must be a DatetimeIndex")
 
-    plt.show()
+    if not isinstance(pnl.index, pd.DatetimeIndex):
+        raise Exception("Index of PnL must be a DatetimeIndex")
+
+    dates = underlying.index
+
+    end_date = dates[-1]
+    start_date = end_date - pd.DateOffset(months=months_offset)
+    entry_date = pnl.dropna().index[0]
+
+    dates = dates[(dates >= start_date) & (dates <= end_date)]
+
+    if not isinstance(entry_date, pd.Timestamp):
+        raise Exception("There was an issue pulling the entry date for the trade.")
+
+    return dates, entry_date
+
+
+def _plot_entry_point(ax: Axes, entry_date: pd.Timestamp, underlying: pd.Series):
+    ax.scatter(
+        [entry_date.strftime("%Y-%m-%d")],
+        [underlying.loc[entry_date] * 0.925],
+        color="g",
+        marker="^",
+        s=10,
+    )
+
+
+def _preprocess_data(
+    underlying: pd.Series, pnl: pd.Series, dates: pd.DatetimeIndex, pnl_type: str
+):
+    underlying = underlying.copy().loc[dates]
+    pnl = pnl.copy()
+
+    if pnl_type == "nominal":
+        pass
+    elif pnl_type == "cumulative":
+        pnl = pnl.cumsum()
+    else:
+        raise Exception(
+            'pnl type is not supported. Supported are "nominal" and "cumulative".'
+        )
+
+    pnl.fillna(0, inplace=True)
+
+    return underlying, pnl
+
+
+def plot_trade(
+    underlying: pd.Series,
+    pnl: pd.Series,
+    pnl_type: Literal["nominal", "cumulative"],
+    title: str,
+    underlying_name: str,
+    months_offset: int = 3,
+):
+    """
+    TODO Summary
+    """
+    # TODO plot pnl cumsum
+
+    dates, entry_date = _get_dates(underlying, pnl, months_offset)
+
+    underlying, pnl = _preprocess_data(underlying, pnl, dates, pnl_type)
+
+    # creates plots
+    fig, axs = plt.subplots(
+        2, 1, sharex=True, gridspec_kw={"hspace": 0.1, "height_ratios": [1.25, 2]}
+    )
+    pnl_ax, underlying_ax = axs
+    pnl_ax: Axes
+    underlying_ax: Axes
+
+    # sets title and applies style
+    if title is not None:
+        fig.suptitle(title)
+
+    apply_bsic_style(fig, axs)
+
+    # plot the data
+    underlying_ax.plot(underlying.index, underlying)
+    pnl_ax.plot(pnl.index, pnl)
+    pnl_ax.axhline(0, color="black", linewidth=1, alpha=0.75)
+
+    # set labels
+    underlying_ax.set_ylabel(underlying_name)
+    pnl_ax.set_ylabel("PnL")
+
+    # formats dates
+    format_timeseries_axis(underlying_ax, "W", 1, "%b %d, %Y")
+
+    # apply logo
+    apply_bsic_logo(fig, pnl_ax, location="top left")
+
+    # plot last price
+    _plot_last_price(underlying_ax, underlying)
+    _plot_last_price(pnl_ax, pnl)
+
+    # plot entry point
+    _plot_entry_point(underlying_ax, entry_date, underlying)
+
+    # plot areas of profit and loss
+    pnl_ax.fill_between(
+        pnl.index,
+        0,
+        pnl,
+        where=(pnl >= 0),  # type: ignore
+        color="g",
+        alpha=0.3,
+        interpolate=True,
+        lw=0,
+    )
+    pnl_ax.fill_between(
+        pnl.index,
+        0,
+        pnl,
+        where=(pnl < 0),  # type: ignore
+        color="r",
+        alpha=0.3,
+        interpolate=True,
+    )
+
+    # # plot stop loss and take profit
+    # trade_start = pnl[pnl["pnl"] > 0].index[-1]
+    # print(trade_start, pnl, pnl[pnl > 0])
+    # if stop_loss is not None:
+    #     _plot_xline(underlying_ax, stop_loss, trade_start=trade_start, color="r")
+    # if take_profit is not None:
+    #     _plot_xline(underlying_ax, take_profit, trade_start=trade_start, color="g")
+
+    # underlying_ax.set_xlim(xlims)
+
     return fig, axs
