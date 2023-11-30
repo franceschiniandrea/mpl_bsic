@@ -156,7 +156,12 @@ def apply_bsic_style(fig: Figure, ax: Axes):
     # otherwise, wait for it to get applied and then apply the style
     else:
         ani = FuncAnimation(
-            fig, update_title_style, frames=1, blit=False, cache_frame_data=False
+            fig,
+            update_title_style,
+            frames=1,
+            blit=False,
+            cache_frame_data=False,
+            repeat=False,
         )
 
         insert_animation(fig, ani)

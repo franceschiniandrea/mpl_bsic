@@ -23,7 +23,6 @@ _ANN_ANCHOR_POINTS = {
 def _get_img_path(logo_type: str):
     BASE_DIR = None
 
-    print(sysconfig.get_path("platlib"))
     if os.path.isfile(sysconfig.get_path("platlib") + "/mpl_bsic"):
         BASE_DIR = sysconfig.get_path("platlib") + "/mpl_bsic"  # pragma: no cover
     else:
@@ -111,8 +110,12 @@ def apply_bsic_logo(
     imagebox.image.set_alpha(alpha)
 
     # generates the annotation box containing the logo at the correct position
-    def gen_logo_annotation_box(ax):
-        position = _get_annotation_position(ax, location, closeness_to_border)
+    def gen_logo_annotation_box(position: tuple[float, float]) -> AnnotationBbox:
+        """Create the annotation box containing the logo,
+        at the correct location (top left, top right, bottom left, bottom right),
+        at the correct position on the plot (from the corner).
+        """
+
         ab = AnnotationBbox(
             imagebox,
             position,
@@ -121,10 +124,13 @@ def apply_bsic_logo(
             frameon=False,
             bboxprops=dict(edgecolor="None"),
         )
+
         return ab
 
     def logo_animation_func(_):
-        ab = gen_logo_annotation_box(ax)
+        position = _get_annotation_position(ax, location, closeness_to_border)
+
+        ab = gen_logo_annotation_box(position)
         new_ab = ax.add_artist(ab)
         return [new_ab]
 
@@ -133,8 +139,8 @@ def apply_bsic_logo(
         logo_animation_func,
         frames=1,  # just one frame
         blit=False,
-        repeat_delay=0.5,  # to not make the animation run too fast
-        cache_frame_data=False,  # to avoid caching the image which causes lag
+        cache_frame_data=False,  # to avoid caching the image which causes lag,
+        repeat=False,  # to make sure it runs only once when calling plt.show()
     )
 
     insert_animation(fig, logo_animation)
