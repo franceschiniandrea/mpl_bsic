@@ -23,7 +23,6 @@ _ANN_ANCHOR_POINTS = {
 def _get_img_path(logo_type: str):
     BASE_DIR = None
 
-    print(sysconfig.get_path("platlib"))
     if os.path.isfile(sysconfig.get_path("platlib") + "/mpl_bsic"):
         BASE_DIR = sysconfig.get_path("platlib") + "/mpl_bsic"  # pragma: no cover
     else:
