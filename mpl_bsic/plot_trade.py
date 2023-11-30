@@ -127,6 +127,9 @@ def plot_trade(
     months_offset: int = 3,
     entry_point_marker_loc: Literal["top", "bottom"] = "top",
     entry_point_marker_size: int = 10,
+    date_ticks_unit: Literal["Y", "M", "W", "D"] = "W",
+    date_ticks_freq: int = 1,
+    date_ticks_format: str = "%b %d, %Y",
 ):
     """
     TODO Summary
@@ -159,7 +162,9 @@ def plot_trade(
     pnl_ax.set_ylabel("PnL")
 
     # formats dates
-    format_timeseries_axis(underlying_ax, "W", 1, "%b %d, %Y")
+    format_timeseries_axis(
+        underlying_ax, date_ticks_unit, date_ticks_freq, date_ticks_format
+    )
 
     # apply logo
     apply_bsic_logo(fig, pnl_ax, location="top left")
