@@ -128,6 +128,13 @@ def apply_bsic_logo(
         new_ab = ax.add_artist(ab)
         return [new_ab]
 
-    logo_animation = FuncAnimation(fig, logo_animation_func, frames=1, blit=False)
+    logo_animation = FuncAnimation(
+        fig,
+        logo_animation_func,
+        frames=1,  # just one frame
+        blit=False,
+        repeat_delay=0.5,  # to not make the animation run too fast
+        cache_frame_data=False,  # to avoid caching the image which causes lag
+    )
 
     insert_animation(fig, logo_animation)
