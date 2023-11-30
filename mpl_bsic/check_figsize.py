@@ -1,17 +1,25 @@
+import logging
+from numbers import Number
 from typing import Optional
+
+log = logging.getLogger("mpl_bsic")
 
 
 def check_figsize(
-    width: float, height: Optional[float], aspect_ratio: Optional[float]
+    width: Optional[float] = None,
+    height: Optional[float] = None,
+    aspect_ratio: Optional[float] = None,
 ) -> tuple[float, float]:
     r"""Check the validity of the figsize.
 
     Checks the validity of the figsize parameters
-    and returns the width and height to use.
+    and returns the width and height you should use for the plot.
+
+    You must specify at least two of the three parameters.
 
     Parameters
     ----------
-    width : float
+    width : float | None
         Width of the Figure, in inches.
     height : float | None
         Height of the Figure, in inches.
@@ -35,25 +43,51 @@ def check_figsize(
     --------
     This is the examples section. WIP.
     """
+
+    if all([height is None, width is None, aspect_ratio is None]):
+        raise Exception("You must specify at least two of the three parameters")
+
+    # if you specified only width and aspect_ratio
+    if height is None:
+        if not (isinstance(width, Number) and isinstance(aspect_ratio, Number)):
+            raise Exception(
+                "If you do not specify height, you must specify aspect_ratio and width"
+            )
+
+        height = width * aspect_ratio
+        return width, height
+
+    # if you specified only height and aspect_ratio
+    if width is None:
+        if not (isinstance(height, Number) and isinstance(aspect_ratio, Number)):
+            raise Exception(
+                "If you do not specify width, you must specify aspect_ratio and height"
+            )
+
+        width = height / aspect_ratio
+
+        # if > 7.32, set to 7.32 and recompute height
+        if width > 7.32:
+            log.warning(
+                "Width is greater than 7.32 inches (the max length of a word document). Setting width to 7.32 inches."  # noqa: E501
+            )
+
+            width = 7.32
+            height = width * aspect_ratio
+
+        return width, height
+
     if width > 7.32:
-        print("--- Warning ---")
-        print(
+        log.warning(
             """Width is greater than 7.32 inches.
 This is the width of a word document available for figures.
 If you set the width > 7.32, the figure will be resized in word and
 the font sizes will not be consistent across the article and the graph"""
         )
+        log.info("Resizing to fit a word document")
 
-    if width is None:
-        print(
-            """you did not specify width.
-            Defaulting to 7.32 inches (width of a word document))"""
-        )
-
-    if height is None:
-        if aspect_ratio is None:
-            raise Exception("You must specify either height or aspect_ratio")
-
+        aspect_ratio = height / width
+        width = 7.32
         height = width * aspect_ratio
 
     return width, height
