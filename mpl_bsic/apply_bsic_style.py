@@ -147,7 +147,6 @@ def apply_bsic_style(fig: Figure, ax: Axes):
     def update_title_style(_):
         ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
 
-        ani.event_source.stop()  # Stop the animation after the first frame
         return ax.artists
 
     # if title has already been set, apply the style
