@@ -54,7 +54,14 @@ def check_figsize(
                 "If you do not specify height, you must specify aspect_ratio and width"
             )
 
-        height = width * aspect_ratio
+        if width > 7.32:
+            log.warning(
+                "Width is greater than 7.32 inches (the max length of a word document). Setting width to 7.32 inches."  # noqa: E501
+            )
+
+            width = 7.32
+
+        height = width / aspect_ratio
         return width, height
 
     # if you specified only height and aspect_ratio
@@ -64,7 +71,7 @@ def check_figsize(
                 "If you do not specify width, you must specify aspect_ratio and height"
             )
 
-        width = height / aspect_ratio
+        width = height * aspect_ratio
 
         # if > 7.32, set to 7.32 and recompute height
         if width > 7.32:
@@ -73,7 +80,7 @@ def check_figsize(
             )
 
             width = 7.32
-            height = width * aspect_ratio
+            height = width / aspect_ratio
 
         return width, height
 
