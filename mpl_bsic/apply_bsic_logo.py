@@ -111,8 +111,12 @@ def apply_bsic_logo(
     imagebox.image.set_alpha(alpha)
 
     # generates the annotation box containing the logo at the correct position
-    def gen_logo_annotation_box(ax):
-        position = _get_annotation_position(ax, location, closeness_to_border)
+    def gen_logo_annotation_box(position: tuple[float, float]) -> AnnotationBbox:
+        """Create the annotation box containing the logo,
+        at the correct location (top left, top right, bottom left, bottom right),
+        at the correct position on the plot (from the corner).
+        """
+
         ab = AnnotationBbox(
             imagebox,
             position,
@@ -121,10 +125,13 @@ def apply_bsic_logo(
             frameon=False,
             bboxprops=dict(edgecolor="None"),
         )
+
         return ab
 
     def logo_animation_func(_):
-        ab = gen_logo_annotation_box(ax)
+        position = _get_annotation_position(ax, location, closeness_to_border)
+
+        ab = gen_logo_annotation_box(position)
         new_ab = ax.add_artist(ab)
         return [new_ab]
 
