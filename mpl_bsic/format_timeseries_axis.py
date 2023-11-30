@@ -1,7 +1,7 @@
-from typing import Literal
-from matplotlib.axes import Axes
+from typing import Literal, Optional
+
 import matplotlib.dates as mdates
-from typing import Optional
+from matplotlib.axes import Axes
 
 
 def format_timeseries_axis(
