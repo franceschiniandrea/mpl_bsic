@@ -118,7 +118,34 @@ def _style_axis(fig: Figure, ax: Axes):
         ax.legend()
 
 
-def apply_bsic_style(fig: Figure, ax: Union[Axes, np.ndarray]):
+def _add_sources(fig: Figure, sources: Union[str, list[str]]):
+    txt = ""
+
+    # if a single source which is not BSIC, add BSIC
+    if isinstance(sources, str) and sources != "BSIC":
+        sources = ["BSIC", sources]
+
+    if isinstance(sources, str):
+        txt = f"Source: {sources}"
+
+    else:
+        # if BSIC is not the first source, insert it
+        if "BSIC" not in sources:
+            sources.insert(0, "BSIC")
+        txt += "Sources: " if len(sources) > 1 else "Source: "
+
+        for i, source in enumerate(sources):
+            txt += source
+            if i != len(sources) - 1:
+                txt += ", "
+
+    # add the text to the figure
+    fig.text(0.5, 0, txt, ha="center")
+
+
+def apply_bsic_style(
+    fig: Figure, ax: Union[Axes, np.ndarray], sources: Union[str, list[str]] = "BSIC"
+):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     You can call this function at any point in your code, the BSIC style will be applied
@@ -189,3 +216,6 @@ def apply_bsic_style(fig: Figure, ax: Union[Axes, np.ndarray]):
         for axis in ax:
             axis: Axes
             _style_axis(fig, axis)
+
+    # add sources to plot
+    _add_sources(fig, sources)
