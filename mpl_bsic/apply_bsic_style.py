@@ -166,6 +166,10 @@ def apply_bsic_style(
     The function will make sure that, whenever you update the title of the plot,
     it gets drawn with the correct style.
 
+    Additionally, it will display the sources specified in the parameter
+    at the bottom of the figure.
+    It will always add BSIC as a source.
+
     .. warning:: You have to make sure you always call ``plt.show()``,
         even if you just want to export the figure. This makes sure
         that the animation is performed and the correct style is applied to the title.
@@ -176,6 +180,19 @@ def apply_bsic_style(
         Matplotlib Figure instance.
     ax : matplotlib.axes.Axes
         Matplotlib Axes instance.
+    sources : str | list[str], optional
+        List of sources, by default "BSIC".
+        You can either specify a string (if you have only one source)
+        or a list of strings (multiple sources).
+
+        Since BSIC is always a source, it will always be included.
+
+        **NB**: if when calling ``plt.show()`` the text seems cutted out, don't worry.
+        When exporting using ``bbox_inches="tight"``,
+        it will seamlessly fit within the figure.
+        This happens because I want to make sure
+        there is enough space between the plot and the sources text,
+        so I position the text at the very bottom of the figure.
 
     See Also
     --------
