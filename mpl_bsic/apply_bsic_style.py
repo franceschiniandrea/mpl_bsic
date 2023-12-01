@@ -215,6 +215,22 @@ def apply_bsic_style(
         apply_bsic_style(fig, ax)
 
         ax.plot(x,y)
+
+    Plotting sources is as easy as specifying the parameter.
+
+    .. plot::
+
+        from mpl_bsic import apply_bsic_style
+
+        x = np.linspace(0, 5, 100)
+        y = np.cos(x)
+
+        fig, ax = plt.subplots(1, 1)
+        ax.set_title('Cos(x)') # set the title before applying the style
+        # the function will re-set the title with the correct style
+        apply_bsic_style(fig, ax, sources=['Bloomberg', 'FactSet'])
+
+        ax.plot(x,y)
     """
     add_fonts()
 
