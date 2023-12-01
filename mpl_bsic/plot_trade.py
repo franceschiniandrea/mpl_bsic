@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -125,6 +125,7 @@ def plot_trade(
     title: str,
     underlying_name: str,
     months_offset: int = 3,
+    sources: Union[str, list[str]] = "BSIC",
     entry_point_marker_loc: Literal["top", "bottom"] = "top",
     entry_point_marker_size: int = 10,
     date_ticks_unit: Literal["Y", "M", "W", "D"] = "W",
@@ -164,6 +165,19 @@ def plot_trade(
         it is recommended to set a short offset (like 3 as the default),
         so that you can easily see the path of the underlying
         after you entered the trade.
+    sources : str | list[str], optional
+        List of sources, by default "BSIC".
+        You can either specify a string (if you have only one source)
+        or a list of strings (multiple sources).
+
+        Since BSIC is always a source, it will always be included.
+
+        **NB**: if when calling ``plt.show()`` the text seems cutted out, don't worry.
+        When exporting using ``bbox_inches="tight"``,
+        it will seamlessly fit within the figure.
+        This happens because I want to make sure
+        there is enough space between the plot and the sources text,
+        so I position the text at the very bottom of the figure.
     entry_point_marker_loc : Literal['top', 'bottom'], optional
         The location of the marker for the entry point, by default "top".
         Whether it is better to use "top" or "bottom" depends
@@ -228,7 +242,7 @@ def plot_trade(
     if title is not None:
         fig.suptitle(title)
 
-    apply_bsic_style(fig, axs)
+    apply_bsic_style(fig, axs, sources)
 
     # plot the data
     underlying_ax.plot(underlying.index, underlying)
@@ -290,5 +304,6 @@ def plot_trade(
     #     _plot_xline(underlying_ax, take_profit, trade_start=trade_start, color="g")
 
     # underlying_ax.set_xlim(xlims)
+    fig.subplots_adjust(bottom=0.2)  # leave space for the sources
 
     return fig, axs

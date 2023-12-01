@@ -110,11 +110,120 @@ class TestStyle:
 
         return fig
 
+    @image_compare(baseline_images="test_style_multiple_axs")
     def test_multiple_axs_2(self):
         """Tests when the function gets called
         with a figure that has more than one axis
         """
 
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs)
+
+        return fig
+
+    @image_compare(baseline_images="test_style_multiple_sources")
+    def test_multiple_sources_1(self):
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs, sources=["BSIC", "Bloomberg"])
+
+        return fig
+
+    @image_compare(baseline_images="test_style_multiple_sources")
+    def test_multiple_sources_2(self):
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs, sources=["Bloomberg"])
+
+        return fig
+
+    @image_compare(baseline_images="test_style_multiple_sources")
+    def test_multiple_sources_3(self):
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs, sources="Bloomberg")
+
+        return fig
+
+    @image_compare(baseline_images="test_style_single_source")
+    def test_single_source_1(self):
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs, sources="BSIC")
+
+        return fig
+
+    @image_compare(baseline_images="test_style_single_source")
+    def test_single_source_2(self):
+        x, y = _gen_data()
+        fig, axs = plt.subplots(1, 2)
+
+        ax0, ax1 = axs
+        ax0: Axes
+        ax1: Axes
+
+        ax0.set_title("Sin(x) 1")
+        ax0.plot(x, y)
+        ax1.set_title("Sin(x) 2")
+        ax1.plot(x, y)
+
+        apply_bsic_style(fig, axs, sources=["BSIC"])
+
+        return fig
+
+    @image_compare(baseline_images="test_style_single_source")
+    def test_single_source_3(self):
         x, y = _gen_data()
         fig, axs = plt.subplots(1, 2)
 

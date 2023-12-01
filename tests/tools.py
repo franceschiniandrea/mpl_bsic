@@ -9,6 +9,8 @@ from matplotlib.testing.compare import compare_images
 from matplotlib.testing.decorators import remove_ticks_and_titles
 from matplotlib.testing.exceptions import ImageComparisonFailure
 
+from utils.run_animations import run_animations
+
 
 def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
     base_dir, filename = split(join("tests", "baseline", expected))
@@ -17,20 +19,10 @@ def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
-    if hasattr(fig, "_bsic_animations"):
-        bsic_animations = fig.__getattribute__("_bsic_animations")
-        print(bsic_animations)
+    plt.rcParams["savefig.bbox"] = "standard"
+    plt.rcParams["savefig.dpi"] = "figure"
 
-        for ani in bsic_animations:
-            for _ in range(5):
-                try:
-                    ani._stop = False
-                    ani._step()
-                except (
-                    AttributeError
-                ):  # catches when animation has no more frames and cannot step anymore
-                    break
-
+    run_animations(fig)
     fig.savefig(os.path.join(out_dir, (filename + format_)))
 
     image_name = filename + format_
@@ -78,9 +70,5 @@ def image_compare(
 
 
 def baseline_save_fig(fig, filename):
-    plt.show(block=False)
-    plt.pause(0.5)
-    fig.savefig(
-        "tests/baseline/" + filename + "_dbg.png", dpi=1200, bbox_inches="tight"
-    )
+    run_animations(fig)
     fig.savefig("tests/baseline/" + filename + "_dbg.png")
