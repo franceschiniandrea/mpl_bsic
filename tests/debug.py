@@ -16,3 +16,5 @@ ax.set_title("Cos(x)")  # set the title before applying the style
 
 ax.plot(x, y)
 plt.show()
+
+fig.savefig("test.png", dpi=1200, bbox_inches="tight")
