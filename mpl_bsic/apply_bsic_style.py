@@ -239,6 +239,10 @@ def apply_bsic_style(
     plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
     plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
 
+    # to make sure the figure is saved correctly
+    plt.rcParams["savefig.bbox"] = "tight"
+    plt.rcParams["savefig.dpi"] = 1200
+
     # apply style to suptitle
     if fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **DEFAULT_TITLE_STYLE)
