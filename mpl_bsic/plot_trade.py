@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -125,6 +125,7 @@ def plot_trade(
     title: str,
     underlying_name: str,
     months_offset: int = 3,
+    sources: Union[str, list[str]] = "BSIC",
     entry_point_marker_loc: Literal["top", "bottom"] = "top",
     entry_point_marker_size: int = 10,
     date_ticks_unit: Literal["Y", "M", "W", "D"] = "W",
@@ -228,7 +229,7 @@ def plot_trade(
     if title is not None:
         fig.suptitle(title)
 
-    apply_bsic_style(fig, axs)
+    apply_bsic_style(fig, axs, sources)
 
     # plot the data
     underlying_ax.plot(underlying.index, underlying)
@@ -290,5 +291,6 @@ def plot_trade(
     #     _plot_xline(underlying_ax, take_profit, trade_start=trade_start, color="g")
 
     # underlying_ax.set_xlim(xlims)
+    fig.subplots_adjust(bottom=0.2)  # leave space for the sources
 
     return fig, axs
