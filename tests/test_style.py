@@ -110,6 +110,7 @@ class TestStyle:
 
         return fig
 
+    @image_compare(baseline_images="test_style_multiple_axs")
     def test_multiple_axs_2(self):
         """Tests when the function gets called
         with a figure that has more than one axis
