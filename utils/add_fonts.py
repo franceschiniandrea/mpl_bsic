@@ -1,8 +1,25 @@
 import os
+import sysconfig
 from os.path import dirname
 from pathlib import Path
 
 import matplotlib.font_manager as font_manager
+
+
+def _get_fonts_path():
+    BASE_DIR = None
+
+    if os.path.isfile(sysconfig.get_path("platlib") + "/mpl_bsic"):
+        BASE_DIR = sysconfig.get_path("platlib") + "/mpl_bsic"  # pragma: no cover
+        print("base dir: ", BASE_DIR)
+    else:
+        BASE_DIR = os.path.join(dirname(dirname(os.path.abspath(__file__))), "mpl_bsic")
+        print("base dir: ", BASE_DIR)
+
+    path = os.path.join(BASE_DIR, "fonts")
+    print("fonts dir: ", path)
+
+    return path
 
 
 def add_fonts():
@@ -14,8 +31,7 @@ def add_fonts():
 
     # if not, add them
     print("adding fonts to font manager")
-    package_path = dirname(dirname(os.path.abspath(__file__)))
-    font_path = os.path.join(package_path, "fonts")
+    font_path = _get_fonts_path()
     font_families_paths = [
         os.path.join(font_path, family) for family in ["garamond", "gill_sans_mt"]
     ]
