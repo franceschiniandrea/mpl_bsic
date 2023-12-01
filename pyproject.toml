@@ -5,7 +5,7 @@ authors = ["Andrea Franceschini <andrea.franceschini2@studbocconi.it>"]
 readme = "README.md"
 version = "0.0.0"    
 packages = [{include = "mpl_bsic"}, {include = "utils"}]
-# testpypi v1.1.25
+# testpypi v1.2.0
 
 [tool.poetry.dependencies]
 python = ">=3.9"
