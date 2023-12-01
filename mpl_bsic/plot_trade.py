@@ -165,6 +165,19 @@ def plot_trade(
         it is recommended to set a short offset (like 3 as the default),
         so that you can easily see the path of the underlying
         after you entered the trade.
+    sources : str | list[str], optional
+        List of sources, by default "BSIC".
+        You can either specify a string (if you have only one source)
+        or a list of strings (multiple sources).
+
+        Since BSIC is always a source, it will always be included.
+
+        **NB**: if when calling ``plt.show()`` the text seems cutted out, don't worry.
+        When exporting using ``bbox_inches="tight"``,
+        it will seamlessly fit within the figure.
+        This happens because I want to make sure
+        there is enough space between the plot and the sources text,
+        so I position the text at the very bottom of the figure.
     entry_point_marker_loc : Literal['top', 'bottom'], optional
         The location of the marker for the entry point, by default "top".
         Whether it is better to use "top" or "bottom" depends
