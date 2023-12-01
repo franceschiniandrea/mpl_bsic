@@ -19,6 +19,9 @@ def _compare_img(fig: Figure, expected: str, format_: str, tol: float):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
+    plt.rcParams["savefig.bbox"] = "standard"
+    plt.rcParams["savefig.dpi"] = "figure"
+
     run_animations(fig)
     fig.savefig(os.path.join(out_dir, (filename + format_)))
 
