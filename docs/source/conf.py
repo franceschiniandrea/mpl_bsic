@@ -52,7 +52,10 @@ pygments_style = "sphinx"
 
 # -- Options for matplotlib plots -----------------------------------------
 plot_include_source = True
-plot_formats = [("png", 900), ("pdf", 900)]
+plot_formats = [("png", 600), ("pdf", 600)]
+plot_rcparams = {
+    "savefig.bbox": "tight",
+}
 plot_pre_code = """
 import numpy as np
 import matplotlib.pyplot as plt
