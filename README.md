@@ -29,7 +29,7 @@
 </div>
 
 This package allows you to style matplotlib plots using BSIC Style (fonts, colors, logos, etc.) to later use them in BSIC articles. It also
-provides utility function to handle the formatting of the axis, check the size of the figures, and more!
+provides utility function to plot trades, handle the formatting of the axis, check the size of the figures, and more!
 
 Read the sections below for an overview of how to install and use the package. For further information, be sure to [read the docs](https://mpl-bsic.readthedocs.io/en/latest/)!
 
@@ -72,26 +72,29 @@ A brief overview of the functions of the module:
 
 * `apply_bsic_style`: applies the BSIC styles to a plot (font families, font sizes).
 * `apply_bsic_logo`: applies the BSIC logo to the plot. You can specify the size, location and logo type.
+* `plot_trade`: plots performance of the trade and path of underlying in BSIC style, with the possibility
+  to specify additional parameters regarding formatting and visualization
 * `check_figsize`: checks the figsize of your plot, to make sure it will be rendered correctly in MS Word.
-    To learn more about this, look at the documentation
+    Returns the correct figure width and height to use
 * `format_timeseries_axis`: formats the x axis of a timeseries plot.
     You can specify the time unit (yearly, monthly, daily), the frequency (e.g. a tick every 3M), and the format (e.g. MM/YYYY or MMM YYYY)
 * `preprocess_dataframe`: preprocesses a dataframe, by setting the index to the date (and converting to datetime)
     and transforming all the columns to lowercase for easier use in the project
-* `plot_trade`: WIP
 
 ## If the matplotlib fonts do not work
 
-Check the full guide on the documentation. Anyway, you need to install
-Garamond and Gill Sans MT on your system and clear your matplotlib cache.
+Starting from version 1.2, `apply_bsic_style` will temporarily install the fonts (__Garamond__ and __Gill Sans MT__) using `FontManager` in `matplotlib`,
+so that plots still get styled correctly. 
+
+For perfomance, however, this could not be the wisest choice, and you can refer to the documentation on how to properly
+install the fonts on your system and make them recognizable my matplotlib. 
 
 ## Contributing
 
 If you have any ideas, features you would like to have implemented, or you find out any bugs within the function, be sure
-to open an issue and I will work on it as soon as possible. Or you can also fork the repo yourself and make a pull request
+to open an issue and I will work on it as soon as possible. Or you can also fork the repo yourself and make a PR
 to the project!
 
 ## Roadmap
 
-1) plot trade (as bloomberg with last price and stuff)
-2) plot tables (instead of having to style them using Excel)
+1) plot tables (instead of having to style them using Excel)
