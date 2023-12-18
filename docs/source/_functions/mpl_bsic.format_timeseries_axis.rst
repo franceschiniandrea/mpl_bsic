@@ -1,6 +1,29 @@
 ﻿mpl\_bsic.format\_timeseries\_axis
 ==================================
 
-.. currentmodule:: mpl_bsic
+.. automodule:: mpl_bsic.format_timeseries_axis
 
-.. autofunction:: format_timeseries_axis
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      format_timeseries_axis
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
