@@ -138,7 +138,7 @@ def _format_worksheet(
     ws.hide_gridlines(2)
 
 
-def write_df_to_excel(
+def df_to_excel(
     df: Union[pd.DataFrame, list[pd.DataFrame]],
     path_to_excel: str,
     title: Optional[Union[str, list[str]]] = None,
@@ -192,7 +192,7 @@ def write_df_to_excel(
     wb.close()
 
 
-def format_excel_file(
+def style_excel_file(
     path_to_excel: str,
     sheet_name: str,
     title: Optional[str],

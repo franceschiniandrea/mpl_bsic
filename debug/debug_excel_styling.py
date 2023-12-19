@@ -2,7 +2,7 @@ import debugconf  # noqa: F401
 import numpy as np
 import pandas as pd
 
-from mpl_bsic import write_df_to_excel
+from mpl_bsic import df_to_excel
 
 # Create example dataframe with random data
 data = {
@@ -15,11 +15,10 @@ df2 = df.copy()
 
 offset = (2, 1)
 
-write_df_to_excel(
+df_to_excel(
     [df, df2],
     "debug/data/test.xlsx",
     ["title 1", "title 2"],
-    "output_sheet",
     offset=offset,
 )
 # style_table.format_excel_file("test.xlsx", "output_sheet", "test title", "test_output")
