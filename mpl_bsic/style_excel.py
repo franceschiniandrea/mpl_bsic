@@ -144,6 +144,58 @@ def df_to_excel(
     title: Optional[Union[str, list[str]]] = None,
     offset: tuple[int, int] = (1, 1),
 ):
+    """Export a Pandas DataFrame as a formatted Excel table.
+
+    Saves the content of the DataFrame to Excel
+    and formats the table according to the BSIC Styling Standards.
+
+    The function will also add a title (optional) at the very top of the table and
+    a row containing `"Source: BSIC"` at the very bottom, leaving a blank row
+    (with reduced height) in between for better aesthetics.
+
+    Parameters
+    ----------
+    df : Union[pandas.DataFrame, list[pandas.DataFrame]]
+        Either a single DataFrame or a list of dataframes
+        to be included in the final file.
+    path_to_excel : str
+        The path for the final excel file, e.g. ``output/fmt_data.xlsx``.
+    title : Optional[Union[str, list[str]]], optional
+        Titles to be included above the formatted table, by default ``None``.
+    offset : tuple[int, int], optional
+        The offset to use in the formatted output, by default ``(1, 1)``.
+        For example, if offset is set to ``(1,2)``,
+        the formatter will leave 2 empty rows and
+        1 empty column for better visualization.
+
+    Raises
+    ------
+    Exception
+        If you provide a list of DataFrames and you want to set titles, you must
+        provide a title for each DataFrame.
+    Exception
+        The length of the DataFrame list/array must match the length
+        of the titles list/array.
+    Exception
+        If you only provide a DataFrame (not a list), the title
+        must also be a `str`, not a list.
+
+    Warnings
+    --------
+    The source Excel file must only contain the headings, the index and the data,
+    with no blank columns or rows in between them.
+    The table has to start at row 0, col 0.
+
+    See Also
+    --------
+    mpl_bsic.style_excel_file :
+        Styles an Excel file. Use if you want to format data
+        from a spreadsheet rather than a pandas DataFrame.
+
+    Examples
+    --------
+    WIP
+    """
     # create a new excel file with the formatted data from the dataframe
     wb = xlsxwriter.Workbook(path_to_excel)
     ws = wb.add_worksheet("output")
@@ -198,6 +250,47 @@ def style_excel_file(
     title: Optional[str],
     offset: tuple[int, int] = (1, 1),
 ):
+    """Format an already existing Excel file.
+
+    The function will create a new file, with the same name as the source file
+    and the suffix `"_fmt"`, in the same directory.
+    It retrieves data and format it according to the BSIC Styling standards.
+
+    The function will also add a title (optional) at the very top of the table and
+    a row containing `"Source: BSIC"` at the very bottom, leaving a blank row
+    (with reduced height) in between for better aesthetics.
+
+    Parameters
+    ----------
+    path_to_excel : str
+        The path to the Excel file.
+    sheet_name : str
+        The name of the worksheet containing the data to be formatted.
+    title : Optional[str]
+        The title to be given to the data. It will be displayed above the table,
+        in the same style as the BSIC Headings.
+    offset : tuple[int, int], optional
+        The offset to use in the formatted output, by default ``(1, 1)``.
+        For example, if offset is set to ``(1,2)``,
+        the formatter will leave 2 empty rows and
+        1 empty column for better visualization.
+
+    Warnings
+    --------
+    The source Excel file must only contain the headings, the index and the data,
+    with no blank columns or rows in between them.
+    The table has to start at row 0, col 0.
+
+    See Also
+    --------
+    mpl_bsic.df_to_excel :
+        Exports a pandas DataFrame to an Excel file. Use if your data is in
+        a DataFrame rather than on a spreadsheet.
+
+    Examples
+    --------
+    WIP
+    """
     # format the already existing excel file
     df = pd.read_excel(path_to_excel, sheet_name=sheet_name, index_col=0)
     # add _fmt to not overwrite the source excel file

@@ -1,29 +1,6 @@
 ﻿mpl\_bsic.apply\_bsic\_logo
 ===========================
 
-.. automodule:: mpl_bsic.apply_bsic_logo
+.. currentmodule:: mpl_bsic
 
-   
-   
-   
-
-   
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      apply_bsic_logo
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
+.. autofunction:: apply_bsic_logo

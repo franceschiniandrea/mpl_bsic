@@ -20,7 +20,7 @@ If it doesn't work on Windows, shoot me a message.
     a) Download the fonts from the ``fonts`` folder in the main repository.
     b) Install the fonts (double click on the font files and click on "Install Font").
 2) Clear your matplotlib cache.
-    a) Go on your pc > users > [your-user] > .matplotlib
+    a) Go on ``your pc > users > [your-user] > .matplotlib``
     b) If you cannot see the .matplotlib folder,
         press ``cmd + shift + .`` to show hidden files.
     c) Delete the ``fontlist-vXXX.json`` file.
@@ -113,6 +113,8 @@ Functions
    mpl_bsic.check_figsize
    mpl_bsic.format_timeseries_axis
    mpl_bsic.preprocess_dataframe
+   mpl_bsic.df_to_excel
+   mpl_bsic.style_excel_file
 
 Indices and tables
 ==================

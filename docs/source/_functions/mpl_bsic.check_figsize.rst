@@ -1,29 +1,6 @@
 ﻿mpl\_bsic.check\_figsize
 ========================
 
-.. automodule:: mpl_bsic.check_figsize
+.. currentmodule:: mpl_bsic
 
-   
-   
-   
-
-   
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      check_figsize
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-
+.. autofunction:: check_figsize
