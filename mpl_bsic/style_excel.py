@@ -61,9 +61,12 @@ def _format_worksheet(
     if not isinstance(ws, xlsxwriter.workbook.Worksheet):
         raise Exception("Worksheet is not an xlsxwriter worksheet")
 
+    title_offset = 0 if title is None else 1
+
     start_row, start_col = offset
     # +1 to end_row to account for the title
-    end_row, end_col = df.shape[0] + start_row + 1, df.shape[1] + start_col
+    end_row = df.shape[0] + start_row + title_offset
+    end_col = df.shape[1] + start_col
 
     def _write_index(df: pd.DataFrame):
         def index_format(i):
@@ -76,7 +79,7 @@ def _format_worksheet(
 
         for row_num, value in enumerate(df.index.values):
             # leave space for the title and headings
-            row_index = start_row + row_num + 2
+            row_index = start_row + row_num + 1 + title_offset
             ws.write(row_index, start_col, value, index_format(row_index))
 
     def _write_data(df: pd.DataFrame, sources: str):
@@ -97,7 +100,7 @@ def _format_worksheet(
             return wb.add_format(fmt)
 
         # write headers and data
-        header_row_index = start_row + 1  # leave space for the title
+        header_row_index = start_row + title_offset  # leave space for the title
         for i, col_name in enumerate(df.columns):
             col_index = start_col + i + 1  # leave space for the index names
 
