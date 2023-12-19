@@ -42,10 +42,6 @@ INDEX_FMT = BASE_BODY_FMT | {
 }
 
 
-def _create_new_file(original_filename: str):
-    pass
-
-
 def _format_worksheet(
     wb,
     ws,
