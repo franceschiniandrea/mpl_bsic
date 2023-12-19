@@ -142,12 +142,11 @@ def write_df_to_excel(
     df: Union[pd.DataFrame, list[pd.DataFrame]],
     path_to_excel: str,
     title: Optional[Union[str, list[str]]] = None,
-    output_sheet: Optional[str] = "output",
     offset: tuple[int, int] = (1, 1),
 ):
     # create a new excel file with the formatted data from the dataframe
     wb = xlsxwriter.Workbook(path_to_excel)
-    ws = wb.add_worksheet(output_sheet)
+    ws = wb.add_worksheet("output")
 
     if isinstance(df, list):
         if not isinstance(title, list):
@@ -197,15 +196,14 @@ def format_excel_file(
     path_to_excel: str,
     sheet_name: str,
     title: Optional[str],
-    output_sheet: Optional[str] = "output",
     offset: tuple[int, int] = (1, 1),
 ):
     # format the already existing excel file
     df = pd.read_excel(path_to_excel, sheet_name=sheet_name, index_col=0)
-    print(df)
+    # add _fmt to not overwrite the source excel file
     fmt_path = path_to_excel.replace(".xlsx", "_fmt.xlsx")
     wb = xlsxwriter.Workbook(fmt_path)
-    ws = wb.add_worksheet(output_sheet)
+    ws = wb.add_worksheet("output")
 
     _format_worksheet(wb, ws, df, title, offset)
 
