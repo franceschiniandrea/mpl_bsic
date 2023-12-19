@@ -49,6 +49,7 @@ numpydoc_xref_ignore = {"optional", "type_without_description", "BadException"}
 numpydoc_class_members_toctree = True
 numpydoc_validation_checks = {"all", "GL01", "GL02", "SA04", "RT03"}
 pygments_style = "sphinx"
+autodoc_typehints = "none"
 
 # -- Options for matplotlib plots -----------------------------------------
 plot_include_source = True
