@@ -194,7 +194,18 @@ def df_to_excel(
 
     Examples
     --------
-    WIP
+    .. code-block:: python
+
+        import pandas as pd
+        from mpl_bsic import df_to_excel
+
+        df = pd.read_excel("your_excel_file.xlsx")
+        df_to_excel(
+            df,
+            "output_filename.xlsx",
+            "Title of the Table",
+            (2,2) # if you want the table to have an offset
+        )
     """
     # create a new excel file with the formatted data from the dataframe
     wb = xlsxwriter.Workbook(path_to_excel)
@@ -289,7 +300,16 @@ def style_excel_file(
 
     Examples
     --------
-    WIP
+    .. code-block:: python
+
+        from mpl_bsic import style_excel_file
+
+        style_excel_file(
+            "excel_file_path",
+            "worksheet_name",
+            "Title of the Table",
+            (2,2) # if you want the table to have an offset
+        )
     """
     # format the already existing excel file
     df = pd.read_excel(path_to_excel, sheet_name=sheet_name, index_col=0)

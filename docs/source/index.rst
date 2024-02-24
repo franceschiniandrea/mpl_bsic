@@ -8,12 +8,15 @@ Docs for mpl_bsic - Version |version|
 
 ``mpl_bsic`` helps you style matplotlib plots in BSIC style.
 
-Setting up
-----------
+Setting up the Fonts (Optional)
+-------------------------------
 
-To make sure the plots are styled correctly, you must make sure that the fonts
-are installed on your computer and that matplotlib can recognize them.
-For now the process has been tested only on Macos.
+BSIC uses Gill Sans MT for Headings, and Garamond for text.
+This library will temporarily install the fonts on your matplotlib
+instance if you don't have them on your computer, but if you want
+to install them, here's a quick explanation.
+
+As of now, the process has only been tested on MacOS.
 If it doesn't work on Windows, shoot me a message.
 
 1) Download and install the fonts
@@ -72,22 +75,28 @@ Be sure to read the docs for :func:`apply_bsic_style() <mpl_bsic.apply_bsic_styl
 When exporting, we need to make sure that the figure is
 not resized automatically by matplotlib and that
 the font sizes stay consistent.
-To do that, you **must not** call ``fig.tight_layout()`` before exporting.
-
+To do that, you **must not** call ``fig.tight_layout()`` before exporting. 
 Additionally, you **must** export the figure with ``bbox_inches='tight'``
 to make sure that no parts of the plot are cropped out.
 
-My personal recommendation is to **export in svg** and **set dpi to 1200**,
-so that the quality will be the best possible.
+My recommendation is to export in ``svg`` format, so that the quality of 
+the image stays constant even when resizing (which, by the way, you should ideally
+not do).
+
+To export the figure, **use the provided function** ``mpl_bsic.export_figure``, 
+which takes care of applying the styles and the correct parameters to the
+``.savefig()`` function provided in vanilla Matplotlib.
 
 .. code:: python
 
+    from mpl_bsic import export_figure
+    
     fig, ax = plt.subplots(1,1)
 
     ... # plot your data and apply the style
-    # fig.tight_layout() # DO NOT call this before exporting
+    # DO NOT call fig.tight_layout() this before exporting
 
-    fig.savefig("your_filename.svg", dpi=1200, bbox_inches="tight")
+    export_figure(fig, 'export_path') # specify the export path without the extension
 
 
 Specific Use Cases
@@ -110,6 +119,7 @@ Functions
    mpl_bsic.apply_bsic_style
    mpl_bsic.apply_bsic_logo
    mpl_bsic.plot_trade 
+   mpl_bsic.export_figure
    mpl_bsic.check_figsize
    mpl_bsic.format_timeseries_axis
    mpl_bsic.preprocess_dataframe
