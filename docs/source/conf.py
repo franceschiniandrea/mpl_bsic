@@ -16,7 +16,7 @@ sys.path.insert(0, package_path)
 project = "mpl_bsic"
 copyright = "2023, Andrea Franceschini"
 author = "Andrea Franceschini"
-release = "1.2.0"
+release = "1.3.0"
 version = release[:3]
 
 # -- General configuration ---------------------------------------------------
