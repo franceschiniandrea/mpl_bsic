@@ -12,6 +12,7 @@ python = ">=3.9"
 matplotlib = "^3.7"
 numpy = "^1.26"
 pandas = "^2.1"
+xlsxwriter = "^3.2.0"
 
 [tool.poetry.group.testing]
 optional = true

@@ -1,4 +1,4 @@
-import conftest  # noqa
+import debugconf  # noqa
 import matplotlib.pyplot as plt
 import numpy as np
 
