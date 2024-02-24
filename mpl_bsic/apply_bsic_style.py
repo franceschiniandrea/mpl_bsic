@@ -244,7 +244,7 @@ def apply_bsic_style(
     plt.rcParams["savefig.dpi"] = 1200
 
     # apply style to suptitle
-    if fig.get_suptitle() != "":
+    if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **DEFAULT_TITLE_STYLE)
 
     if isinstance(ax, Axes):
