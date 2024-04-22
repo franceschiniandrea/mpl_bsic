@@ -44,6 +44,12 @@
 
 
 **Full Changelog**: https://github.com/NotFrancee/mpl_bsic/compare/1.1.6...1.2.0
+## 1.3.1 (2024-04-23)
+
+### Fix
+
+- **dependencies**: fix dependencies for colab
+
 ## 1.3.0 (2024-02-24)
 
 ### Feat
