@@ -3,7 +3,7 @@ name = "mpl_bsic"
 description = "BSIC Plotting Library"
 authors = ["Andrea Franceschini <andrea.franceschini2@studbocconi.it>"]
 readme = "README.md"
-version = "1.3.1a0"    
+version = "1.3.1"    
 packages = [{include = "mpl_bsic"}, {include = "utils"}]
 # testpypi v1.2.1
 
