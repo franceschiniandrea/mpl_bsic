@@ -1,7 +1,7 @@
 from typing import Union
 
 import numpy as np
-from cycler import cycler
+
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.axes import Axes
@@ -9,92 +9,21 @@ from matplotlib.figure import Figure
 
 from utils.add_fonts import add_fonts
 from utils.set_animations import insert_animation
-
-DEFAULT_TITLE_STYLE = {
-    "fontname": "Gill Sans MT",
-    "color": "black",
-    "fontweight": "bold",
-    "fontstyle": "italic",
-    "fontsize": 12,
-}
-"""Default Title Style. Used in ``apply_bsic_style``.
-
-Details:
-
-* ``fontname``: ``Gill Sans MT``
-* ``color``: ``black``
-* ``fontweight``: ``bold``
-* ``fontstyle``: ``italic``
-* ``fontsize``: ``12``
-
-See Also
---------
-apply_bsic_style : The function that applies the style to the plot.
-mpl_bsic.DEFAULT_COLOR_CYCLE :
-    The default color cycler that gets applied to the plot.
-mpl_bsic.DEFAULT_FONT_SIZE :
-    The default font size that gets applied to the plot.
-
-Examples
---------
-This is the examples section. WIP.
-"""
-
-BSIC_COLORS = ["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
-DEFAULT_COLOR_CYCLE = cycler(color=BSIC_COLORS)
-"""Default Color Style.
-
-Cycle:
-
-* ``#38329A``
-* ``#8EC6FF``
-* ``#601E66``
-* ``#2F2984``
-* ``#0E0B54``
-
-See Also
---------
-mpl_bsic.apply_bsic_style : The function that applies the style to the plot.
-mpl_bsic.DEFAULT_TITLE_STYLE :
-    The default title style that gets applied to the plot.
-mpl_bsic.DEFAULT_FONT_SIZE :
-    The default font size that gets applied to the plot.
-
-Examples
---------
-This is the examples section. WIP.
-"""
-
-DEFAULT_FONT_SIZE = 10
-"""Default Font Size for the plot (text, labels, ticks).
-
-The default font size used for the plots is 10.
-
-See Also
---------
-mpl_bsic.apply_bsic_style : The function that applies the style to the plot.
-mpl_bsic.DEFAULT_TITLE_STYLE :
-    The default title style that gets applied to the plot.
-mpl_bsic.DEFAULT_COLOR_CYCLE :
-    The default color cycler that gets applied to the plot.
-
-Examples
---------
-This is the examples section. WIP.
-"""
+from .constants import FONTSIZES, TITLE_STYLE, SUBTITLE_STYLE, COLOR_CYCLE, BSIC_COLORS, FONTFAMILIES
 
 
 def _style_axis(fig: Figure, ax: Axes):
     ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
+    ax.set_prop_cycle(COLOR_CYCLE)
 
     def update_title_anim(_):
-        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+        ax.set_title(ax.get_title(), **TITLE_STYLE)
 
         return ax.artists
 
     # if title has already been set, apply the style
     if ax.get_title() != "":
-        ax.set_title(ax.get_title(), **DEFAULT_TITLE_STYLE)
+        ax.set_title(ax.get_title(), **TITLE_STYLE)
     # otherwise, wait for it to get applied and then apply the style
     else:
         ani = FuncAnimation(
@@ -235,9 +164,9 @@ def apply_bsic_style(
     add_fonts()
 
     # sets font family, size, and cycler to rcparams
-    plt.rcParams["font.sans-serif"] = "Garamond"
-    plt.rcParams["font.size"] = DEFAULT_FONT_SIZE
-    plt.rcParams["axes.prop_cycle"] = DEFAULT_COLOR_CYCLE
+    plt.rcParams["font.sans-serif"] = FONTFAMILIES.TEXT.value
+    plt.rcParams["font.size"] = FONTSIZES.TEXT.value
+    plt.rcParams["axes.prop_cycle"] = COLOR_CYCLE
 
     # to make sure the figure is saved correctly
     plt.rcParams["savefig.bbox"] = "tight"
@@ -245,7 +174,7 @@ def apply_bsic_style(
 
     # apply style to suptitle
     if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
-        fig.suptitle(fig.get_suptitle(), **DEFAULT_TITLE_STYLE)
+        fig.suptitle(fig.get_suptitle(), **TITLE_STYLE)
 
     if isinstance(ax, Axes):
         _style_axis(fig, ax)
