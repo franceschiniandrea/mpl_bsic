@@ -6,3 +6,4 @@ from .format_timeseries_axis import format_timeseries_axis  # noqa
 from .plot_trade import plot_trade  # noqa
 from .preprocess_dataframe import preprocess_dataframe  # noqa
 from .style_excel import df_to_excel, style_excel_file  # noqa
+from .add_title_subtitle import add_title_subtitle
