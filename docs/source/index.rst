@@ -8,10 +8,10 @@ Docs for mpl_bsic - Version |version|
 
 ``mpl_bsic`` helps you style matplotlib plots in BSIC style.
 
-Setting up the Fonts (Optional)
+[Optional] Setting up the Fonts
 -------------------------------
 
-BSIC uses Gill Sans MT for Headings, and Garamond for text.
+BSIC uses *Gill Sans MT* for Headings, and *Garamond* for text.
 This library will temporarily install the fonts on your matplotlib
 instance if you don't have them on your computer, but if you want
 to install them, here's a quick explanation.
@@ -28,7 +28,7 @@ If it doesn't work on Windows, shoot me a message.
         press ``cmd + shift + .`` to show hidden files.
     c) Delete the ``fontlist-vXXX.json`` file.
 
-[IMPORTANT] Plotting for BSIC Articles
+**[IMPORTANT]** Using the Library for BSIC Articles
 ---------------------------------------------------------
 This section will explain how to correctly create plots for BSIC articles.
 
@@ -51,13 +51,16 @@ you can use :func:`check_figsize() <mpl_bsic.check_figsize>`.
 
 In your python file, you will call :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>`
 (and :func:`apply_bsic_logo() <mpl_bsic.apply_bsic_logo>`) on the plot you want to style.
+Be sure to read the docs for both the functions thoroughly, to understand how to use them correctly.
 
-Be sure to read the docs for :func:`apply_bsic_style() <mpl_bsic.apply_bsic_style>` and
-:func:`apply_bsic_logo() <mpl_bsic.apply_bsic_logo>` thoroughly to see how to use them correctly.
+The plot should have the following characteristics:
+
+* **Title**: 12pt Franklin Gothic. If the title is the same style as the text in the plot, you're doing something wrong
+* **Text**: 10pt Garamond. This should be used for **all** the text, apart from the title, including the legend and eventual annotations on the plot.
 
 .. code:: python
 
-    from mpl_bsic import apply_bsic_style
+    from mpl_bsic import apply_bsic_style, export_figure
 
     fig, ax = plt.subplots(1,1)
     apply_bsic_style(fig, ax)
@@ -67,12 +70,20 @@ Be sure to read the docs for :func:`apply_bsic_style() <mpl_bsic.apply_bsic_styl
     # fig.tight_layout() # DO NOT call this before exporting
 
     # notice the arguments specified
-    fig.savefig("your_filename.svg", dpi=1200, bbox_inches="tight")
+    export_figure(fig, "your_filename")
 
 
 .. rubric:: Exporting the plot
 
-When exporting, we need to make sure that the figure is
+To export the figure, **use the provided function** ``mpl_bsic.export_figure``,
+which takes care of applying the styles and the correct parameters to the
+``.savefig()`` function provided in vanilla Matplotlib. The function
+automatically exports in `svg` format, which is the one recommended to be used
+in articles.
+
+If you still want to use the traditional `fig.savefig()` function (**not recommended**),
+you need to make a few adjustments to the function call.
+First, when exporting, we need to make sure that the figure is
 not resized automatically by matplotlib and that
 the font sizes stay consistent.
 To do that, you **must not** call ``fig.tight_layout()`` before exporting. 
@@ -83,9 +94,6 @@ My recommendation is to export in ``svg`` format, so that the quality of
 the image stays constant even when resizing (which, by the way, you should ideally
 not do).
 
-To export the figure, **use the provided function** ``mpl_bsic.export_figure``, 
-which takes care of applying the styles and the correct parameters to the
-``.savefig()`` function provided in vanilla Matplotlib.
 
 .. code:: python
 
@@ -109,6 +117,14 @@ regardless of time:
 .. code:: python
 
     data.index = data.index.astype(str)
+
+.. rubric:: Formatting Excel Files
+
+The library includes two functions to format Excel files following
+the BSIC standards:
+
+* :func:`df_to_excel() <mpl_bsic.df_to_excel>`: give it a pandas DataFrame, and it will create an Excel Table, correctly formatted.
+* :func:`style_excel_file() <mpl_bsic.style_excel_file>`: give it the path of an Excel file, it will format it for you.
 
 Functions
 ---------
