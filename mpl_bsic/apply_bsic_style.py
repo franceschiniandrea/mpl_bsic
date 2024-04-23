@@ -13,7 +13,12 @@ from .constants import FONTSIZES, TITLE_STYLE, SUBTITLE_STYLE, COLOR_CYCLE, BSIC
 
 
 def _style_axis(fig: Figure, ax: Axes):
-    ax.set_prop_cycle(DEFAULT_COLOR_CYCLE)
+    if not isinstance(fig, Figure):
+        raise Exception('The first parameter in _style_axis must be an instance of Figure')
+    if not isinstance(ax, Axes):
+        raise Exception('The second parameter in _style_axis must be an instance of Axes')
+
+    # set the color cycle for the axis
     ax.set_prop_cycle(COLOR_CYCLE)
 
     def update_title_anim(_):
@@ -73,7 +78,7 @@ def _add_sources(fig: Figure, sources: Union[str, list[str]]):
 
 
 def apply_bsic_style(
-    fig: Figure, ax: Union[Axes, np.ndarray], sources: Union[str, list[str]] = "BSIC"
+    fig: Figure, ax: Union[Axes, np.ndarray] = None, sources: Union[str, list[str]] = "BSIC"
 ):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
@@ -176,12 +181,16 @@ def apply_bsic_style(
     if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **TITLE_STYLE)
 
-    if isinstance(ax, Axes):
+    axes = fig.axes
+    for ax in axes:
         _style_axis(fig, ax)
-    else:
-        for axis in ax:
-            axis: Axes
-            _style_axis(fig, axis)
+    #
+    # if isinstance(ax, Axes):
+    #     _style_axis(fig, ax)
+    # else:
+    #     for axis in ax:
+    #         axis: Axes
+    #         _style_axis(fig, axis)
 
     # add sources to plot
     _add_sources(fig, sources)
