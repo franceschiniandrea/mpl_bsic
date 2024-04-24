@@ -174,7 +174,7 @@ def apply_bsic_style(
     plt.rcParams["axes.prop_cycle"] = COLOR_CYCLE
 
     # to make sure the figure is saved correctly
-    plt.rcParams["savefig.bbox"] = "tight"
+    # plt.rcParams["savefig.bbox"] = "tight"
     plt.rcParams["savefig.dpi"] = 1200
 
     # apply style to suptitle

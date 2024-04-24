@@ -3,6 +3,7 @@ from matplotlib.axes import Axes
 from .constants import SUBTITLE_STYLE, TITLE_STYLE
 import numpy as np
 def add_title_subtitle(fig: Figure, title: str, subtitle: str):
+def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: float = 0.8):
     axes = fig.axes
 
     # remove suptitles and titles from the plot
@@ -50,6 +51,11 @@ def add_title_subtitle(fig: Figure, title: str, subtitle: str):
     # apply the maximum wrap width to the subtitle (TODO fix)
     max_wrap_width = fig.bbox.width * 0.75
     # subtitle_annotation._get_wrap_line_width = lambda: max_wrap_width
+    def resize():
+        new_size = fig.bbox.width * wrapping_factor
+        return new_size
+
+    subtitle_annotation._get_wrap_line_width = resize
     # subtitle_annotation._get_wrap_line_width = lambda: 600
 
     # get the height of the subtitle and decide the margin of the title accordingly
