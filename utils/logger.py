@@ -1,17 +1,20 @@
 import logging
 
+
 def get_logger(name: str, level=logging.INFO):
     logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     formatter = logging.Formatter(
         '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-        , datefmt='%m-%d-%Y %H:%M'
     )
 
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(level)
-    stream_handler.setFormatter(formatter)
+    # create a console handler
+    ch = logging.StreamHandler()
+    ch.setLevel(level)
 
-    logger.addHandler(stream_handler)
+    # set the formatters to the two handlers
+    ch.setFormatter(formatter)
+
+    logger.addHandler(ch)
     return logger
