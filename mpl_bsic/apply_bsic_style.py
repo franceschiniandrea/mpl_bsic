@@ -174,7 +174,7 @@ def apply_bsic_style(
     plt.rcParams["axes.prop_cycle"] = COLOR_CYCLE
 
     # to make sure the figure is saved correctly
-    # plt.rcParams["savefig.bbox"] = "tight"
+    # plt.rcParams["savefig.bbox"] = "tight" # remove to make add_title_subtitle work
     plt.rcParams["savefig.dpi"] = 1200
 
     # apply style to suptitle
@@ -184,13 +184,6 @@ def apply_bsic_style(
     axes = fig.axes
     for ax in axes:
         _style_axis(fig, ax)
-    #
-    # if isinstance(ax, Axes):
-    #     _style_axis(fig, ax)
-    # else:
-    #     for axis in ax:
-    #         axis: Axes
-    #         _style_axis(fig, axis)
 
     # add sources to plot
     _add_sources(fig, sources)

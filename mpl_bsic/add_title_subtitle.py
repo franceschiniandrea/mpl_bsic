@@ -5,6 +5,8 @@ import numpy as np
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
+
+
 def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: float = 0.8):
     axes = fig.axes
 
@@ -33,12 +35,12 @@ def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: 
 
     # parameters to fix the text to the top left corner
     annotate_params = {
-        'xy': (0,1),
-        'xycoords': ax.get_yaxis_transform(),
-        'textcoords': 'offset points',
+        'xy': (0,1),  # in the top left corner of the ax
+        'xycoords': ax.get_yaxis_transform(),  # based on ax coordinates
+        'textcoords': 'offset points',  # with offset points
         'ha': 'left',
         'va': 'bottom',
-        'wrap': True,
+        'wrap': True,  # wrapping lines
     }
     bbox_params = {
         'pad': 0,
@@ -46,31 +48,31 @@ def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: 
     }
 
     # draw the subtitle annotation
-    subtitle_bottom_margin = 20
+    subtitle_bottom_margin = 20  # give it a bit of distance from the top
     subtitle_xytext = (0, subtitle_bottom_margin) # define position of subtitle
-    subtitle_annotation = ax.annotate(subtitle, xytext=subtitle_xytext, **annotate_params, **SUBTITLE_STYLE, bbox=bbox_params)
+    subtitle_annotation = ax.annotate(
+        subtitle,
+        xytext=subtitle_xytext,
+        **annotate_params,
+        **SUBTITLE_STYLE,
+        bbox=bbox_params)
 
-    # apply the maximum wrap width to the subtitle (TODO fix)
-    max_wrap_width = fig.bbox.width * 0.75
+    # define resize function to resize
+    #   based on the current fig width
     def resize():
         new_size = fig.bbox.width * wrapping_factor
         logger.debug(f'Resizing happening - figwidth is {int(fig.bbox.width)}px, resizing bbox to {int(new_size)}px')
         return new_size
 
     subtitle_annotation._get_wrap_line_width = resize
-    # subtitle_annotation._get_wrap_line_width = lambda: 600
 
-    # get the height of the subtitle and decide the margin of the title accordingly
-    # print(f'new width lim: {max_wrap_width}')
-    # print(f'subtitle_annotation height = {subtitle_height}, ')
-
-    # get the subtitle bbox height, and set the position of the title slightly above it
+    # get the final subtitle bbox height and
+    #   position the title slightly above it
     subtitle_height = subtitle_annotation.get_window_extent().height
     title_xytext = (0, subtitle_height + 15)
-    # print(f'new text pos = {title_xytext}')
 
     # create the title annotation
     title_annotation = ax.annotate(title, xytext=title_xytext, **annotate_params, **TITLE_STYLE, bbox=bbox_params)
 
-    # return the two annotations (TODO remove?)
-    return subtitle_annotation, title_annotation
+    # return the two annotation instances
+    return title_annotation, subtitle_annotation
