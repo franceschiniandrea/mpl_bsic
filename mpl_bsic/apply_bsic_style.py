@@ -9,7 +9,7 @@ from matplotlib.figure import Figure
 
 from utils.add_fonts import add_fonts
 from utils.set_animations import insert_animation
-from .constants import FONTSIZES, TITLE_STYLE, SUBTITLE_STYLE, COLOR_CYCLE, BSIC_COLORS, FONTFAMILIES
+from .constants import FONTSIZES, TITLE_STYLE, COLOR_CYCLE, BSIC_COLORS, FONTFAMILIES
 
 
 def _style_axis(fig: Figure, ax: Axes):
