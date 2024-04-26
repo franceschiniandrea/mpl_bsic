@@ -114,6 +114,13 @@ def apply_bsic_style(
         Matplotlib Figure instance.
     ax : matplotlib.axes.Axes
         Matplotlib Axes instance.
+
+        .. deprecated:: 1.3.2
+            The ``ax`` parameter will be removed in a future release, since it is not needed anymore.
+            ``apply_bsic_style`` now gets all the axes from the figure instance (and is capable
+            of styling all the axes at once), thus it is
+            not necessary to include the axes in the function call anymore.
+
     sources : str | list[str], optional
         List of sources, by default "BSIC".
         You can either specify a string (if you have only one source)
@@ -144,9 +151,8 @@ def apply_bsic_style(
         y = np.cos(x)
 
         fig, ax = plt.subplots(1, 1)
-        ax.set_title('Cos(x)') # set the title before applying the style
-        # the function will re-set the title with the correct style
-        apply_bsic_style(fig, ax)
+        ax.set_title('Cos(x)')
+        apply_bsic_style(fig, sources=['Bloomberg'])
 
         ax.plot(x,y)
 
