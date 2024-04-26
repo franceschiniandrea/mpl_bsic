@@ -77,8 +77,22 @@ def _add_sources(fig: Figure, sources: Union[str, list[str]]):
     fig.text(0.5, 0, txt, ha="center")
 
 
+def _fill_between(ax: Axes, alpha: float):
+    lines = ax.get_lines()
+    for line in lines:
+        color = line.get_color()
+        x = line.get_xdata()
+        y = line.get_ydata()
+
+        ax.fill_between(x,y,color=color, alpha=alpha)
+
+
 def apply_bsic_style(
-    fig: Figure, ax: Union[Axes, np.ndarray] = None, sources: Union[str, list[str]] = "BSIC"
+    fig: Figure,
+    ax: Union[Axes, np.ndarray] = None,
+    sources: Union[str, list[str]] = "BSIC",
+    fill_between: bool = False,
+    fill_between_alpha: float = 0.25
 ):
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
@@ -134,6 +148,17 @@ def apply_bsic_style(
         This happens because I want to make sure
         there is enough space between the plot and the sources text,
         so I position the text at the very bottom of the figure.
+    fill_between : bool, optional
+        If true, it colors the area between each line and the 0 axis in the plot.
+        The fill is consistent with the color of each line, and you can specify
+        the alpha to use in the next parameter. Defaults to ``False``.
+
+        .. versionadded:: 1.3.2
+    fill_between_alpha : float, optional
+        The alpha value to use when ``fill_between`` is set to ``True``.
+        Defaults to 0.25.
+
+        .. versionadded:: 1.3.2
 
     See Also
     --------
@@ -156,8 +181,6 @@ def apply_bsic_style(
 
         ax.plot(x,y)
 
-    Plotting sources is as easy as specifying the parameter.
-
     .. plot::
 
         from mpl_bsic import apply_bsic_style
@@ -171,6 +194,7 @@ def apply_bsic_style(
         apply_bsic_style(fig, ax, sources=['Bloomberg', 'FactSet'])
 
         ax.plot(x,y)
+        apply_bsic_style(fig, fill_between=True)
     """
     add_fonts()
 
@@ -191,5 +215,8 @@ def apply_bsic_style(
     for ax in axes:
         _style_axis(fig, ax)
 
+        # TODO FIX: fill between is not applied if ax.plot is called after apply_bsic_style
+        if fill_between:
+            _fill_between(ax, fill_between_alpha)
     # add sources to plot
     _add_sources(fig, sources)
