@@ -97,30 +97,26 @@ def apply_bsic_style(
     r"""Apply the BSIC Style to an existing matplotlib plot.
 
     You can call this function at any point in your code, the BSIC style will be applied
-    regardless. Before saving, however, make sure you do ``plt.show()``
-    so that the style gets applied to the plot.
-    This function works by adding an animation such that,
+    regardless. This function works by adding an animation such that,
     regardless of where you specify your title,
     it will be updated with the correct style.
 
-    First, the function will set the correct fontsizes
+    First, it will set the correct font sizes
     and font family for the plot text (labels, ticks...).
-
     It will also set the color cycle used in matplotlib to the colors
     specified in the BSIC design standards.
     If you already plotted, it will, again,
     change the colors of the lines to the correct ones.
-
     The function will make sure that, whenever you update the title of the plot,
     it gets drawn with the correct style.
 
     Additionally, it will display the sources specified in the parameter
     at the bottom of the figure.
-    It will always add BSIC as a source.
+    It will always add *BSIC* as a source.
 
-    .. warning:: You have to make sure you always call ``plt.show()``,
-        even if you just want to export the figure. This makes sure
-        that the animation is performed and the correct style is applied to the title.
+    .. warning:: When exporting the figure for publication, make sure to use
+        :func:`export_figure() <mpl_bsic.export_figure>`. This makes sure
+        that the animation is performed and the correct style is applied to the title
 
     Parameters
     ----------
@@ -139,7 +135,6 @@ def apply_bsic_style(
         List of sources, by default "BSIC".
         You can either specify a string (if you have only one source)
         or a list of strings (multiple sources).
-
         Since BSIC is always a source, it will always be included.
 
         **NB**: if when calling ``plt.show()`` the text seems cutted out, don't worry.
@@ -189,10 +184,7 @@ def apply_bsic_style(
         y = np.cos(x)
 
         fig, ax = plt.subplots(1, 1)
-        ax.set_title('Cos(x)') # set the title before applying the style
-        # the function will re-set the title with the correct style
-        apply_bsic_style(fig, ax, sources=['Bloomberg', 'FactSet'])
-
+        ax.set_title('Cos(x)')
         ax.plot(x,y)
         apply_bsic_style(fig, fill_between=True)
     """
