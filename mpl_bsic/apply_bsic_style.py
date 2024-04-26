@@ -211,6 +211,14 @@ def apply_bsic_style(
     if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **TITLE_STYLE)
 
+    # check that axes is not specified anymore
+    #   otherwise issue a DeprecationWarning
+    if ax is not None:
+        raise DeprecationWarning(
+            'The parameter `ax` is not necessary anymore, \nand it will be removed in a future version.\n'
+            'The library gets all the axis in the figure through the `fig` parameter.'
+        )
+
     axes = fig.axes
     for ax in axes:
         _style_axis(fig, ax)
