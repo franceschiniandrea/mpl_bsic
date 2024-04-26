@@ -8,6 +8,59 @@ logger = get_logger(__name__)
 
 
 def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: float = 0.8):
+    """Add title and subtitle to the plot.
+
+    Adds a title (Franklin Gothic Bold) and subtitle (Franklin Gothic Medium Italic, smaller
+    font size) to the top of the plot. Wraps the subtitle automatically inserting newlines,
+    in order to not make it overflow.
+
+    If you specified a title for the plot, this function will remove it and substitute with the title you specify
+    (which is not inserted using ``.set_title()``, but rather as an Annotation)
+
+    Parameters
+    ----------
+    fig : matplotlib.figure.Figure
+        Matplotlib Figure instance.
+    title : str
+        The title to insert.
+    subtitle : str
+        The subtitle to insert.
+    wrapping_factor : float, optional
+        How tight to make the subtitle box before making it go to a newline.
+        If your subtitle is long enough to fill two lines, you should try to tweak the wrapping factor
+        so that the text **never** goes over the right side of the plot. The library will try
+        to do that by default, but some tweaking might still be needed for the final export to look good.
+        Defaults to 0.8.
+
+    Returns
+    -------
+    tuple[Annotation, Annotation]
+        A tuple containing the title Annotation instance, and the Subtitle annotation instance.
+
+    See Also
+    --------
+    mpl_bsic.apply_bsic_style :
+        Applies the BSIC Style to plots.
+    mpl_bsic.apply_bsic_logo :
+        Applies the BSIC Logo to plots.
+
+    Examples
+    --------
+
+    .. plot::
+
+        from mpl_bsic import apply_bsic_style, add_title_subtitle
+
+        x = np.linspace(0, 5, 100)
+        y = np.cos(x)
+
+        fig, ax = plt.subplots(1, 1)
+        ax.set_title('Cos(x)')
+        apply_bsic_style(fig, sources=['Bloomberg'])
+        add_title_subtitle(fig, 'Sine Plot', 'This is a Sin plot. Further analysis on it will be provided below')
+
+        ax.plot(x,y)
+    """
     axes = fig.axes
 
     # remove suptitles and titles from the plot
