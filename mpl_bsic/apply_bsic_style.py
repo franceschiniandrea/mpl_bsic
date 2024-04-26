@@ -89,7 +89,7 @@ def _fill_between(ax: Axes, alpha: float):
 
 def apply_bsic_style(
     fig: Figure,
-    ax: Union[Axes, np.ndarray] = None,
+    ax: Union[Axes, np.ndarray, None] = None,
     sources: Union[str, list[str]] = "BSIC",
     fill_between: bool = False,
     fill_between_alpha: float = 0.25
@@ -195,9 +195,33 @@ def apply_bsic_style(
     plt.rcParams["font.size"] = FONTSIZES.TEXT.value
     plt.rcParams["axes.prop_cycle"] = COLOR_CYCLE
 
+    # Set x axis
+    plt.rcParams['xtick.direction'] =  'in'
+    plt.rcParams['xtick.major.size'] = 3
+    plt.rcParams['xtick.major.width'] = 0.5
+    plt.rcParams['xtick.minor.size'] = 1.5
+    plt.rcParams['xtick.minor.width'] = 0.5
+    plt.rcParams['xtick.minor.visible'] = True
+    plt.rcParams['xtick.top'] = True
+
+    # Set y axis
+    plt.rcParams['ytick.direction'] = 'in'
+    plt.rcParams['ytick.major.size'] = 3
+    plt.rcParams['ytick.major.width'] = 0.5
+    plt.rcParams['ytick.minor.size'] = 1.5
+    plt.rcParams['ytick.minor.width'] = 0.5
+    plt.rcParams['ytick.minor.visible'] = True
+    plt.rcParams['ytick.right'] = True
+
+    # Set line widths
+    plt.rcParams['axes.linewidth'] = 0.5
+    plt.rcParams['grid.linewidth'] = 0.5
+    plt.rcParams['lines.linewidth'] = 1.
+
     # to make sure the figure is saved correctly
     # plt.rcParams["savefig.bbox"] = "tight" # remove to make add_title_subtitle work
     plt.rcParams["savefig.dpi"] = 1200
+    plt.rcParams['savefig.pad_inches'] = 0.05
 
     # apply style to suptitle
     if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
