@@ -113,7 +113,7 @@ def apply_bsic_logo(
 
         fig, ax = plt.subplots(1, 1)
         ax.set_title('Cos(x)') # set the title before applying the style
-        apply_bsic_style(fig, ax)
+        apply_bsic_style(fig)
         apply_bsic_logo(fig, ax, location='top right', scale=0.03)
 
         ax.plot(x,y)
@@ -131,7 +131,7 @@ def apply_bsic_logo(
 
         fig, ax = plt.subplots(1, 1)
         ax.set_title('Cos(x)') # set the title before applying the style
-        apply_bsic_style(fig, ax)
+        apply_bsic_style(fig)
         apply_bsic_logo(
             fig,
             ax,

@@ -3,7 +3,7 @@ from matplotlib.figure import Figure
 from utils.run_animations import run_animations
 
 
-def export_figure(fig: Figure, filename: str):
+def export_figure(fig: Figure, filename: str, transparent: bool = True):
     """
     Export a figure according to BSIC Standards.
 
@@ -17,7 +17,11 @@ def export_figure(fig: Figure, filename: str):
     fig : Figure
         The ``matplotlib`` figure to export.
     filename : str
-        The filename that should be used when exporting.
+        The filename that should be used when exporting (including the extension).
+        Example: 'fig1.svg'
+    transparent: bool
+        Whether to transparent the figure when exporting.
+        Defaults to True.
 
     See Also
     --------
@@ -46,4 +50,4 @@ def export_figure(fig: Figure, filename: str):
     """
     run_animations(fig)
 
-    fig.savefig(filename + ".svg", dpi=1200, bbox_inches="tight")
+    fig.savefig(filename, dpi=1200, transparent=transparent)

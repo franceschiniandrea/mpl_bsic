@@ -118,6 +118,7 @@ Functions
 
    mpl_bsic.apply_bsic_style
    mpl_bsic.apply_bsic_logo
+   mpl_bsic.add_title_subtitle
    mpl_bsic.plot_trade 
    mpl_bsic.export_figure
    mpl_bsic.check_figsize
