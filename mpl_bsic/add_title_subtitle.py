@@ -7,7 +7,7 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: float = 0.8):
+def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: float = 0.8, subtitle_bottom_margin: float = 20):
     """Add title and subtitle to the plot.
 
     Adds a title (Franklin Gothic Bold) and subtitle (Franklin Gothic Medium Italic, smaller
@@ -101,7 +101,7 @@ def add_title_subtitle(fig: Figure, title: str, subtitle: str, wrapping_factor: 
     }
 
     # draw the subtitle annotation
-    subtitle_bottom_margin = 20  # give it a bit of distance from the top
+    # subtitle_bottom_margin = 20  # give it a bit of distance from the top # THIS IS NOW A PARAMETER
     subtitle_xytext = (0, subtitle_bottom_margin) # define position of subtitle
     subtitle_annotation = ax.annotate(
         subtitle,
