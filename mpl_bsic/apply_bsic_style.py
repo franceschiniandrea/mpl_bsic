@@ -86,6 +86,37 @@ def _fill_between(ax: Axes, alpha: float):
 
         ax.fill_between(x,y,color=color, alpha=alpha)
 
+def _initialize_style():
+    add_fonts()
+
+    plt.rcParams.update({
+        'font.sans-serif': FONTFAMILIES.TEXT.value,
+        'font.size': FONTSIZES.TEXT.value,
+        'axes.prop_cycle': COLOR_CYCLE,
+        # research paper settings
+        # xticks
+        'xtick.direction': 'in',
+        'xtick.major.size': 3,
+        'xtick.major.width': 0.5,
+        'xtick.minor.size': 1.5,
+        'xtick.minor.width': 0.5,
+        'xtick.minor.visible': True,
+        'xtick.top': True,
+
+        # yticks
+        'ytick.direction': 'in',
+        'ytick.major.size': 3,
+        'ytick.major.width': 0.5,
+        'ytick.minor.size': 1.5,
+        'ytick.minor.width': 0.5,
+        'ytick.minor.visible': True,
+        'ytick.right': True,
+    })
+
+    # to make sure the figure is saved correctly
+    # plt.rcParams["savefig.bbox"] = "tight" # remove to make add_title_subtitle work
+    plt.rcParams["savefig.dpi"] = 1200
+    plt.rcParams['savefig.pad_inches'] = 0.05
 
 def apply_bsic_style(
     fig: Figure,
@@ -188,41 +219,6 @@ def apply_bsic_style(
         ax.plot(x,y)
         apply_bsic_style(fig, fill_between=True)
     """
-    add_fonts()
-
-    # sets font family, size, and cycler to rcparams
-    plt.rcParams["font.sans-serif"] = FONTFAMILIES.TEXT.value
-    plt.rcParams["font.size"] = FONTSIZES.TEXT.value
-    plt.rcParams["axes.prop_cycle"] = COLOR_CYCLE
-
-    # Set x axis
-    plt.rcParams['xtick.direction'] =  'in'
-    plt.rcParams['xtick.major.size'] = 3
-    plt.rcParams['xtick.major.width'] = 0.5
-    plt.rcParams['xtick.minor.size'] = 1.5
-    plt.rcParams['xtick.minor.width'] = 0.5
-    plt.rcParams['xtick.minor.visible'] = True
-    plt.rcParams['xtick.top'] = True
-
-    # Set y axis
-    plt.rcParams['ytick.direction'] = 'in'
-    plt.rcParams['ytick.major.size'] = 3
-    plt.rcParams['ytick.major.width'] = 0.5
-    plt.rcParams['ytick.minor.size'] = 1.5
-    plt.rcParams['ytick.minor.width'] = 0.5
-    plt.rcParams['ytick.minor.visible'] = True
-    plt.rcParams['ytick.right'] = True
-
-    # Set line widths
-    plt.rcParams['axes.linewidth'] = 0.5
-    plt.rcParams['grid.linewidth'] = 0.5
-    plt.rcParams['lines.linewidth'] = 1.
-
-    # to make sure the figure is saved correctly
-    # plt.rcParams["savefig.bbox"] = "tight" # remove to make add_title_subtitle work
-    plt.rcParams["savefig.dpi"] = 1200
-    plt.rcParams['savefig.pad_inches'] = 0.05
-
     # apply style to suptitle
     if hasattr(fig, "get_suptitle") and fig.get_suptitle() != "":
         fig.suptitle(fig.get_suptitle(), **TITLE_STYLE)
@@ -242,5 +238,6 @@ def apply_bsic_style(
         # TODO FIX: fill between is not applied if ax.plot is called after apply_bsic_style
         if fill_between:
             _fill_between(ax, fill_between_alpha)
+
     # add sources to plot
     _add_sources(fig, sources)
