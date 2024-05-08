@@ -1,4 +1,5 @@
 from cycler import cycler
+import matplotlib.colors as mcolors
 from enum import IntEnum, Enum
 
 class FONTSIZES(IntEnum):
@@ -57,6 +58,10 @@ This is the examples section. WIP.
 
 BSIC_COLORS = ["#38329A", "#8EC6FF", "#601E66", "#2F2984", "#0E0B54"]
 COLOR_CYCLE = cycler(color=BSIC_COLORS)
+
+bsic_cmap = mcolors.LinearSegmentedColormap.from_list(
+    "bsic", ["#8EC6FF", "#38329A", "#0E0B54", "#601E66"]
+)
 """Default Color Style.
 
 Cycle:
